@@ -107,6 +107,18 @@
   font-weight: 500;
 }
 
+    .venue-image {
+  display: block;
+  transition: all 0.3s ease;
+  border-radius: 10px; /* optional, mas premium look */
+}
+
+.venue-image:hover {
+  transform: translateY(-5px); /* slight lift effect */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
 .closing-text a:hover {
   text-decoration: underline;
 }
@@ -286,7 +298,9 @@
                     </div>
                 </div>
                 <div class="reveal" style="margin-top: 3rem;">
-                    <img src="casa alesandra.jpg" alt="Casa Alessandra venue" class="venue-image">
+                    <a href="https://www.facebook.com/people/Casa-Alessandra/61581206527609/" target="_blank">
+                          <img src="casa alesandra.jpg" alt="Casa Alessandra venue" class="venue-image">
+                    </a>
                     <p class="image-caption">CASA ALESSANDRA</p>
                 </div>
             </div>
