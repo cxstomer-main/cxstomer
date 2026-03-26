@@ -110,13 +110,19 @@
     .venue-image {
   display: block;
   transition: all 0.3s ease;
-  border-radius: 10px; /* optional, mas premium look */
+  border-radius: 10px;
 }
 
 .venue-image:hover {
-  transform: translateY(-5px); /* slight lift effect */
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(0, 255, 100, 0.6), 
+              0 10px 25px rgba(0, 0, 0, 0.2);
   cursor: pointer;
+}
+
+.venue-image:active {
+  transform: scale(0.97); /* subtle press effect */
+  box-shadow: 0 0 10px rgba(0, 255, 100, 0.8);
 }
 
 .closing-text a:hover {
