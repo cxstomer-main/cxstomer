@@ -88,7 +88,18 @@
         /* Light Sections */
         .light-section { background: var(--ivory); padding: 5rem 2rem; }
         .container { max-width: 1200px; margin: 0 auto; }
-        .section-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; }
+        .section-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+}
+
+/* MOBILE: force 1 column */
+@media (max-width: 768px) {
+    .section-grid {
+        grid-template-columns: 1fr;
+    }
+}
         .section-title { font-family: var(--font-serif); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 600; color: var(--jungle); margin-bottom: 1.5rem; }
         .section-text { color: rgba(11, 58, 46, 0.8); line-height: 1.7; margin-bottom: 1rem; }
         .venue-image { width: 100%; aspect-ratio: 16/9; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.18); }
@@ -100,31 +111,11 @@
         .timeline-time { font-weight: 500; color: var(--jungle); width: 100px; flex-shrink: 0; }
         .timeline-line { flex: 1; height: 1px; background: rgba(11, 58, 46, 0.2); }
         .timeline-activity { color: rgba(11, 58, 46, 0.8); flex: 1; }
-
-        /* FAQs */
-      @media (max-width: 900px) {
-    .faq-grid {
-        grid-template-columns: 1fr;
-    }
-}
         .faq-item { margin-bottom: 1rem; }
         .faq-question { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.5rem; }
         .faq-icon { color: var(--gold); flex-shrink: 0; margin-top: 0.2rem; }
         .faq-question h4 { font-weight: 500; color: var(--jungle); line-height: 1.4; }
         .faq-answer { font-size: 0.9375rem; color: rgba(11, 58, 46, 0.7); padding-left: 2rem; line-height: 1.6; }
-
-       .section-grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 3rem;
-}
-
-/* MOBILE FIX */
-@media (max-width: 768px) {
-    .section-grid {
-        grid-template-columns: 1fr;
-    }
-}
         
         /* Van Transfer Section */
         .van-transfer-section { background: var(--ivory); padding: 4rem 2rem; border-top: 1px solid rgba(11, 58, 46, 0.1); }
@@ -919,7 +910,7 @@
         <!-- FAQs -->
         <div class="light-section">
             <div class="container">
-                <div class="section-grid" style="grid-template-columns: 1fr 2fr;">
+                <div class="section-grid">
                     <div class="reveal"><h2 class="section-title">FAQs</h2></div>
                     <div class="reveal faq-grid">
                         <!-- NEW: +1 FAQ -->
