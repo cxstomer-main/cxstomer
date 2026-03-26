@@ -57,7 +57,7 @@
         /* Location Page */
         .location-page { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; }
         .location-label { font-size: 0.875rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 3rem; position: relative; z-index: 10; }
-        .location-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; width: 100%; max-width: 1000px; position: relative; z-index: 10; }
+        .location-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; width: 100%; max-width: 1000px; position: relative; z-index: 10; }
         .location-card { background: rgba(247, 247, 245, 0.06); border: 1px solid rgba(247, 247, 245, 0.18); padding: 2.5rem 2rem; cursor: pointer; transition: all 0.3s ease; }
         .location-card:hover { transform: translateY(-6px); border-color: rgba(247, 247, 245, 0.35); }
         .location-card h3 { font-family: var(--font-serif); font-size: 2.5rem; font-weight: 600; margin-bottom: 0.5rem; }
@@ -246,7 +246,7 @@
             <div class="vignette"></div>
             <div class="landing-content">
                 <h1 class="landing-title fade-in">WELCOME TO CXSTOMER<br><span>EVENT PAGE</span></h1>
-                <p class="landing-subtitle slide-up delay-2">A milestone worth gathering for—bringing together our community across <span class="text-gold">Luzon</span>, <span class="text-gold">Visayas</span>, and <span class="text-gold">Mindanao</span>.</p>
+                <p class="landing-subtitle slide-up delay-2">A milestone worth gathering for—bringing together our community across <span class="text-gold">The Philippines </span> and <span class="text-gold">Jamaica.</span></p>
                 <button class="btn-primary slide-up delay-3" onclick="showPage('location-page')">Choose Your Location</button>
             </div>
             <div class="landing-footer">
@@ -266,6 +266,7 @@
                 <div class="location-card" onclick="showRegionalPage('luzon')"><h3>Manila</h3><p>April 18</p></div>
                 <div class="location-card" onclick="showRegionalPage('visayas')"><h3>Cebu</h3><p>April 25</p></div>
                 <div class="location-card" onclick="showRegionalPage('mindanao')"><h3>CDO</h3><p>May 2</p></div>
+                <div class="location-card" onclick="showRegionalPage('jamaica')"><h3>Jamaica</h3><p>Coming Soon!</p></div>
             </div>
             <p class="location-helper">Select a region to view schedule & venue.</p>
         </div>
@@ -285,6 +286,7 @@
                     <a href="#" onclick="showRegionalPage('luzon'); return false;">Manila</a>
                     <a href="#" onclick="showRegionalPage('visayas'); return false;">Cebu</a>
                     <a href="#" onclick="showRegionalPage('mindanao'); return false;">CDO</a>
+                    <a href="#" onclick="showRegionalPage('jamaica'); return false;">Jamaica</a>
                 </div>
             </nav>
             <div class="info-bar">
@@ -590,6 +592,7 @@
                     <a href="#" onclick="showRegionalPage('luzon'); return false;">Manila</a>
                     <a href="#" onclick="showRegionalPage('visayas'); return false;">Cebu</a>
                     <a href="#" onclick="showRegionalPage('mindanao'); return false;">CDO</a>
+                    <a href="#" onclick="showRegionalPage('jamaica'); return false;">Jamaica</a>
                 </div>
             </nav>
             <div class="info-bar">
@@ -888,6 +891,7 @@ We recommend checking the route in advance and allowing extra travel time due to
                     <a href="#" onclick="showRegionalPage('luzon'); return false;">Manila</a>
                     <a href="#" onclick="showRegionalPage('visayas'); return false;">Cebu</a>
                     <a href="#" onclick="showRegionalPage('mindanao'); return false;">CDO</a>
+                    <a href="#" onclick="showRegionalPage('jamaica'); return false;">Jamaica</a>
                 </div>
             </nav>
             <div class="info-bar">
@@ -1181,6 +1185,283 @@ We recommend checking the route in advance and allowing extra travel time due to
                                 <circle cx="12" cy="7" r="4"/>
                             </svg>
                             <span>Point of Contact: Reach out to Ricky, KM, or Tophy on Slack, or drop a message in our group chats.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Closing Section -->
+        <div class="closing-section">
+            <div class="tropical-overlay"></div>
+            <div class="vignette"></div>
+            <h2 class="closing-title reveal">We can't wait to see you there!</h2>
+            <p class="closing-text reveal">
+              Got questions? You can reach out on Slack to 
+               <span> 
+                <a href="https://cxstomer.slack.com/team/U02DJ6H15TN" target="_blank">KM</a>
+              </span>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p class="footer-text">© 2026 CXSTOMER. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#" onclick="showPage('landing-page'); return false;">Home</a>
+                    <a href="#" onclick="showPage('location-page'); return false;">Locations</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+     <!-- ============================================
+         JAMAICA PAGE
+         ============================================ -->
+    <div id="jamaica-page" class="page regional-page">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="tropical-overlay"></div>
+            <div class="vignette"></div>
+            <nav class="nav-bar">
+                <a href="#" class="nav-logo" onclick="showPage('landing-page'); return false;">CXSTOMER</a>
+                <div class="nav-links">
+                    <a href="#" onclick="showRegionalPage('luzon'); return false;">Manila</a>
+                    <a href="#" onclick="showRegionalPage('visayas'); return false;">Cebu</a>
+                    <a href="#" onclick="showRegionalPage('mindanao'); return false;">CDO</a>
+                    <a href="#" onclick="showRegionalPage('jamaica'); return false;">Jamaica</a>
+                </div>
+            </nav>
+            <div class="info-bar">
+                <div class="info-item"><label>Event Date</label><span>Coming Soon!</span></div>
+                <div class="info-item"><label>Check-in starts</label><span>Coming Soon!</span></div>
+                <div class="info-item"><label>Event begins at</label><span>Coming Soon!</span></div>
+                <div class="info-item"><label>See you there</label><span>Coming Soon!</span></div>
+            </div>
+            <div class="hero-content">
+                <p class="hero-subtitle">CXSTOMER 5th Anniversary - Regional Meet</p>
+                <h1 class="hero-title">JAMAICA CONNECT</h1>
+                <p class="hero-description">Join us in Jamaica for a meaningful and engaging experience as we bring the Cxstomer team together—an opportunity to connect in person, strengthen relationships, and share moments with the people you’ve worked alongside as we celebrate our 5th anniversary.</p>
+                <a href="#jamaica-details" class="btn-gold">View Details</a>
+            </div>
+        </div>
+        
+        <!-- Event Details -->
+        <div id="jamaica-details" class="light-section">
+            <div class="container">
+                <div class="section-grid">
+                    <div class="reveal"><h2 class="section-title">Event details</h2></div>
+                    <div class="reveal">
+                        <p class="section-text">In celebration of Cxstomer’s 5th anniversary, we’re bringing the team together in Jamaica for a special and memorable experience. This gathering is all about reconnecting, building stronger bonds, and enjoying time together in a vibrant setting.
+</p>
+                        <p class="section-text">Expect a mix of team activities, shared moments, and opportunities to engage with colleagues in a more personal and meaningful way.</p>
+                    </div>
+                </div>
+                <div class="reveal" style="margin-top: 3rem;">
+                    <a href=" " target="_blank">
+                          <img src="jamaica.jpg" alt="jamaica" class="venue-image">
+                    </a>
+                    <p class="image-caption">Jamaica</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Venue Info & Map -->
+        <div class="venue-info-section">
+            <div class="container">
+                <div class="venue-info-grid">
+                    <div class="reveal">
+                        <h3 class="venue-info-title">Venue Information</h3>
+                        <div class="venue-info-item">
+                            <label>Venue Name</label>
+                            <p>Coming Soon!</p>
+                        </div>
+                        <div class="venue-info-item">
+                            <label>Address</label>
+                            <p>Coming Soon!</p>
+                        </div>
+                        <div class="venue-info-item">
+                            <label>Contact</label>
+                            <p>Coming Soon!</p>
+                        </div>
+                    </div>
+                    <div class="reveal">
+                        <div class="map-container">
+                          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d888583.262543427!2d-77.93698544932964!3d18.119513008738192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eda2a1bc6cf719d%3A0x59a0d1c0b5120efa!2sJamaica!5e1!3m2!1sen!2sph!4v1774555564022!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Program Flow -->
+        <div class="light-section">
+            <div class="container">
+                <div class="section-grid">
+                    <div class="reveal"><h2 class="section-title">Program flow</h2></div>
+                    <div class="reveal">
+                        <div class="timeline">
+              <div class="timeline-date">Coming Soon!</div>
+          
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FAQs -->
+        <div class="light-section">
+            <div class="container">
+                <div class="section-grid">
+                    <div class="reveal"><h2 class="section-title">FAQs</h2></div>
+                    <div class="reveal faq-grid">
+                        <!-- NEW: +1 FAQ -->
+                        <div class="faq-item" style="grid-column: 1 / -1; background: rgba(212, 160, 44, 0.1); padding: 1.5rem; border-left: 3px solid var(--gold);">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                                <h4>Can I bring a +1 or guest to the event?</h4>
+                            </div>
+                            <p class="faq-answer">We've had a few questions about bringing a +1 to the meetups. We completely understand how special it would be to share this with loved ones, and we truly appreciate the enthusiasm around the event.<br><br>This celebration has been planned as a time for our team to connect and bond with one another, so attendance will be limited to employees only.<br><br>Thank you so much for your understanding, and please feel free to reach out to me if you have any questions or concerns.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H5.24a2 2 0 0 0-1.8 1.1l-.8 1.63A6 6 0 0 0 2 12.42V16h2"/>
+                                    <circle cx="6.5" cy="16.5" r="2.5"/>
+                                    <circle cx="16.5" cy="16.5" r="2.5"/>
+                                </svg>
+                                <h4>Is parking available at the venue?</h4>
+                            </div>
+                            <p class="faq-answer">Yes! Guests can park onsite.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                                <h4>Who can I contact for questions?</h4>
+                            </div>
+                            <p class="faq-answer">Reach out to Ricky, KM, or Tophy on Slack, or drop a message in our group chats.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                <h4>How do I get to the venue?</h4>
+                            </div>
+                            <p class="faq-answer"> <a href="https://www.google.com/maps/dir/15.6191219,120.8091396/Tubajon+Cliff+Private+Resort,+Zone+2,+Tubajon,+Laguindingan,+9000+Misamis+Oriental/@11.8157092,119.8715785,7z/data=!4m10!4m9!1m1!4e1!1m5!1m1!1s0x32555954b8735633:0x114e9de434ad143b!2m2!1d124.4601558!2d8.6240302!3e0?entry=ttu&g_ep=EgoyMDI2MDMyMy4xIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">
+        Click here
+    </a> for directions to Tubajon Cliff Private Resort<br>
+ 
+                            We recommend checking your route ahead of time and leaving extra travel time on the event day.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/>
+                                    <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/>
+                                    <path d="M18 12h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/>
+                                    <path d="M12 10v2"/>
+                                    <path d="M12 16v2"/>
+                                </svg>
+                                <h4>Will there be room arrangements for overnight stays?</h4>
+                            </div>
+                            <p class="faq-answer">Yes, room and bed assignments will be provided upon arrival.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                                <h4>Will there be transportation provided?</h4>
+                            </div>
+                            <p class="faq-answer">Yes! A free vehicle will pick up attendees at Gaisano, CDO. Meet-up is at 12:00 PM, and departure is 1:00 PM on May 2, 2026.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                    <path d="M12 17h.01"/>
+                                </svg>
+                                <h4>What if my schedule conflicts with the event?</h4>
+                            </div>
+                            <p class="faq-answer">If you have scheduling issues, leave requests, or PTO concerns, coordinate with Miss Diana Suarez or your Team Lead.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Van Transfer Section -->
+        <div class="van-transfer-section">
+            <div class="container">
+                <div class="reveal">
+                    <div class="van-transfer-header">
+                        <svg class="van-transfer-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="6" width="18" height="12" rx="2"/>
+                            <path d="M6 18v2"/>
+                            <path d="M18 18v2"/>
+                            <circle cx="7" cy="12" r="1"/>
+                            <circle cx="17" cy="12" r="1"/>
+                        </svg>
+                        <h3 class="van-transfer-title">Free Van Transfer</h3>
+                    </div>
+                    <p class="van-transfer-desc">Van Transfer is back and forth. We've arranged convenient pickup points for your convenience.</p>
+                    
+                    <!-- Pickup Points Accordion -->
+                    <div class="pickup-accordion" id="jamaica-pickup">
+                        <div class="pickup-header" onclick="togglePickup('jamaica-pickup')">
+                            <h4>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                View Pickup Points
+                            </h4>
+                            <span class="pickup-toggle">▼</span>
+                        </div>
+                        <div class="pickup-content">
+                            <div class="pickup-list">
+                                <div class="pickup-item">
+                                    <span class="pickup-number">1</span>
+                                    <div class="pickup-info">
+                                        <h5>Coming Soon!</h5>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            
+                                <div class="pickup-item">
+                                    <span class="pickup-number">★</span>
+                                    <div class="pickup-info">
+                                        <h5>Coming Soon!</h5>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="contact-info">
+                        <h5>Contact Information</h5>
+                        <div class="contact-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            <span>Coming Soon!</span>
                         </div>
                     </div>
                 </div>
