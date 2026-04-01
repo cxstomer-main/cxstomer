@@ -194,12 +194,22 @@
         .outfit-accordion.active .outfit-accordion-content { max-height: 1000px; }
         
         /* Outfit Grid */
-        .outfit-grid { padding: 2rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-        .outfit-item {
+        .outfit-grid {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    justify-items: center;
+}
+
+.outfit-item {
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 300px; /* optional para hindi sobrang laki */
+    width: 100%;
 }
+
 
 .outfit-item img {
     width: 100%;
