@@ -195,10 +195,34 @@
         
         /* Outfit Grid */
         .outfit-grid { padding: 2rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-        .outfit-item { text-align: center; }
-        .outfit-item img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); transition: all 0.3s ease; }
-        .outfit-item img:hover { transform: translateY(-5px); box-shadow: 0 12px 35px rgba(0,0,0,0.2); }
-        .outfit-item-label { margin-top: 1rem; font-size: 0.9rem; color: var(--jungle); font-weight: 500; }
+        .outfit-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.outfit-item img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+
+.outfit-item img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+}
+
+.outfit-item-label {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--jungle);
+    font-weight: 500;
+    text-align: center;
+}
         
         @media (max-width: 768px) {
             .outfit-grid { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.5rem; }
@@ -414,7 +438,7 @@
                 </div>
                 <div class="reveal" style="margin-top: 3rem;">
                     <a href="https://www.facebook.com/people/Casa-Alessandra/61581206527609/" target="_blank">
-                          <img src="luzon1.png" alt="Casa Alessandra venue" class="venue-image">
+                          <img src="luzon.png" alt="Casa Alessandra venue" class="venue-image">
                     </a>
                     <p class="image-caption">CASA ALESSANDRA</p>
                 </div>
