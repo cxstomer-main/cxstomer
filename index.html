@@ -1711,19 +1711,15 @@ We recommend checking the route in advance and allowing extra travel time due to
 
         // Generate gallery data (using user's photos + placeholders)
         // In production, replace this with actual 285 photo paths
-        const userPhotos = [
-            { src: 'assets/event-1.jpg', category: 'venue', caption: 'Welcome to the Luzon Takeover' },
-            { src: 'assets/event-2.jpg', category: 'venue', caption: 'The Cxstomer banner at Casa Alessandra' },
-            { src: 'assets/event-3.jpg', category: 'food', caption: 'Beautifully curated dinner spread' },
-            { src: 'assets/event-4.jpg', category: 'venue', caption: 'Poolside venue setup' },
-            { src: 'assets/event-5.jpg', category: 'moments', caption: 'Welcome sign and decorations' },
-            { src: 'assets/event-6.jpg', category: 'venue', caption: 'Elegant cocktail tables' },
-            { src: 'assets/gallery-1.jpg', category: 'venue', caption: 'Evening poolside ambiance' },
-            { src: 'assets/gallery-2.jpg', category: 'people', caption: 'Team celebration' },
-            { src: 'assets/gallery-3.jpg', category: 'food', caption: 'Table settings and decor' },
-            { src: 'assets/gallery-4.jpg', category: 'venue', caption: 'Casa Alessandra at sunset' },
-        ];
+        const userPhotos = [];
 
+for (let i = 1; i <= 172; i++) {
+    userPhotos.push({
+        src: `assets/photo${i}.jpg`,
+        category: 'moments'
+    });
+}
+        
         // Generate placeholder entries for 285 photos
         const categories = ['venue', 'moments', 'people', 'food'];
 
