@@ -485,7 +485,7 @@
                 <!-- Gallery items will be populated by JavaScript -->
             </div>
             <div class="gallery-load-more reveal">
-                <div class="gallery-counter" id="galleryCounter">Showing <span id="showingCount">0</span> of <span>285</span> photos</div>
+                <div class="gallery-counter" id="galleryCounter">Showing <span id="showingCount">0</span> of <span>172</span> photos</div>
                 <button class="btn-gold" id="loadMoreBtn" onclick="loadMorePhotos()">Load More Photos</button>
             </div>
         </div>
@@ -1700,18 +1700,18 @@ We recommend checking the route in advance and allowing extra travel time due to
         }
         createParticles();
 
-        // ============================================
-        // NEW: Photo Gallery System
-        // ============================================
-        const GALLERY_BATCH_SIZE = 24;
-        let galleryLoaded = 0;
-        let currentFilter = 'all';
-        let lightboxIndex = 0;
-        let allGalleryItems = [];
+      // ============================================
+// Photo Gallery System (FIXED VERSION)
+// ============================================
 
-        // Generate gallery data (using user's photos + placeholders)
-        // In production, replace this with actual 285 photo paths
-        const userPhotos = [];
+const GALLERY_BATCH_SIZE = 24;
+let galleryLoaded = 0;
+let currentFilter = 'all';
+let lightboxIndex = 0;
+let allGalleryItems = [];
+
+// Generate user photos (photo1.jpg to photo172.jpg)
+const userPhotos = [];
 
 for (let i = 1; i <= 172; i++) {
     userPhotos.push({
@@ -1719,91 +1719,92 @@ for (let i = 1; i <= 172; i++) {
         category: 'moments'
     });
 }
+
+// Use only user photos (no placeholders)
+allGalleryItems = [...userPhotos];
+
+function renderGalleryItems(filter, append = false) {
+    const grid = document.getElementById('galleryGrid');
+
+    if (!append) {
+        grid.innerHTML = '';
+        galleryLoaded = 0;
+    }
+
+    const filtered = filter === 'all'
+        ? allGalleryItems
+        : allGalleryItems.filter(item => item.category === filter);
+
+    const toShow = filtered.slice(galleryLoaded, galleryLoaded + GALLERY_BATCH_SIZE);
+
+    toShow.forEach((item, idx) => {
+        const globalIdx = allGalleryItems.indexOf(item);
+        const div = document.createElement('div');
+        div.className = 'gallery-item';
+
+        // Optional masonry effect
+        const rand = Math.random();
+        if (rand > 0.7) div.classList.add('tall');
+        else if (rand > 0.85) div.classList.add('wide');
+
+        div.innerHTML = `
+            <img src="${item.src}" alt="gallery image" loading="lazy"
+                onload="this.parentElement.classList.add('visible')">
+            <div class="gallery-item-overlay">
+                <div>
+                    <div class="gallery-item-category">${item.category}</div>
+                </div>
+            </div>
+        `;
+
+        // OPTIONAL: remove if wala kang lightbox function
+        div.onclick = () => {
+            if (typeof openLightbox === 'function') {
+                openLightbox(globalIdx);
+            }
+        };
+
+        grid.appendChild(div);
+
+        // animation delay
+        setTimeout(() => div.classList.add('visible'), idx * 50);
+    });
+
+    galleryLoaded += toShow.length;
+
+    // Update counter
+    document.getElementById('showingCount').textContent =
+        Math.min(galleryLoaded, filtered.length);
+
+    // Show/hide load more button
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+
+    if (galleryLoaded >= filtered.length) {
+        loadMoreBtn.style.display = 'none';
+    } else {
+        loadMoreBtn.style.display = 'inline-block';
+    }
+}
+
+function filterGallery(filter) {
+    currentFilter = filter;
+
+    document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.filter === filter);
+    });
+
+    renderGalleryItems(filter, false);
+}
+
+function loadMorePhotos() {
+    renderGalleryItems(currentFilter, true);
+}
+
+// Initialize gallery
+document.addEventListener('DOMContentLoaded', () => {
+    renderGalleryItems('all', false);
+});
         
-        // Generate placeholder entries for 285 photos
-        const categories = ['venue', 'moments', 'people', 'food'];
-
-        // Build the full 285-item gallery
-        for (let i = 0; i < 285; i++) {
-            if (i < userPhotos.length) {
-                allGalleryItems.push(userPhotos[i]);
-            } else {
-                const cat = categories[i % categories.length];
-                const capList = captions[cat];
-                const cap = capList[i % capList.length] + ' #' + (Math.floor(i / capList.length) + 1);
-                // Cycle through available images as placeholders
-                const placeholderSrc = userPhotos[i % userPhotos.length].src;
-                allGalleryItems.push({ src: placeholderSrc, category: cat, caption: cap });
-            }
-        }
-
-        function renderGalleryItems(filter, append = false) {
-            const grid = document.getElementById('galleryGrid');
-            if (!append) {
-                grid.innerHTML = '';
-                galleryLoaded = 0;
-            }
-
-            const filtered = filter === 'all' ? allGalleryItems : allGalleryItems.filter(item => item.category === filter);
-            const toShow = filtered.slice(galleryLoaded, galleryLoaded + GALLERY_BATCH_SIZE);
-
-            toShow.forEach((item, idx) => {
-                const globalIdx = allGalleryItems.indexOf(item);
-                const div = document.createElement('div');
-                div.className = 'gallery-item';
-                // Add size variations for masonry effect
-                const rand = Math.random();
-                if (rand > 0.7) div.classList.add('tall');
-                else if (rand > 0.85) div.classList.add('wide');
-
-                div.innerHTML = `
-                    <img src="${item.src}" alt="${item.caption}" loading="lazy" onload="this.parentElement.classList.add('visible')">
-                    <div class="gallery-item-overlay">
-                        <div>
-                            <div class="gallery-item-category">${item.category}</div>
-                            <div class="gallery-item-caption">${item.caption}</div>
-                        </div>
-                    </div>
-                `;
-                div.onclick = () => openLightbox(globalIdx);
-                grid.appendChild(div);
-
-                // Stagger animation
-                setTimeout(() => div.classList.add('visible'), idx * 50);
-            });
-
-            galleryLoaded += toShow.length;
-
-            // Update counter
-            document.getElementById('showingCount').textContent = Math.min(galleryLoaded, filtered.length);
-
-            // Show/hide load more button
-            const loadMoreBtn = document.getElementById('loadMoreBtn');
-            if (galleryLoaded >= filtered.length) {
-                loadMoreBtn.style.display = 'none';
-            } else {
-                loadMoreBtn.style.display = 'inline-block';
-            }
-        }
-
-        function filterGallery(filter) {
-            currentFilter = filter;
-            // Update active button
-            document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.filter === filter);
-            });
-            renderGalleryItems(filter, false);
-        }
-
-        function loadMorePhotos() {
-            renderGalleryItems(currentFilter, true);
-        }
-
-        // Initialize gallery
-        document.addEventListener('DOMContentLoaded', () => {
-            renderGalleryItems('all', false);
-        });
-
         // ============================================
         // NEW: Lightbox
         // ============================================
