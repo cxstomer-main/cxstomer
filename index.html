@@ -228,7 +228,7 @@
            ============================================ */
 
         /* ---- Confetti Canvas ---- */
-        #confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
+    
 
         /* ---- Custom Cursor ---- */
         .custom-cursor { position: fixed; width: 12px; height: 12px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 10000; transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s, background 0.2s; mix-blend-mode: difference; }
@@ -372,8 +372,6 @@
     <!-- Custom Cursor -->
     <div class="custom-cursor" id="customCursor"></div>
 
-    <!-- Confetti Canvas -->
-    <canvas id="confetti-canvas"></canvas>
 
     <!-- Floating Particles -->
     <div class="particles" id="particles"></div>
@@ -1566,116 +1564,6 @@ We recommend checking the route in advance and allowing extra travel time due to
             el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
             el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
         });
-
-        // ============================================
-        // NEW: Confetti Effect
-        // ============================================
-        const confettiCanvas = document.getElementById('confetti-canvas');
-        const confettiCtx = confettiCanvas.getContext('2d');
-        confettiCanvas.width = window.innerWidth;
-        confettiCanvas.height = window.innerHeight;
-
-        const confettiColors = ['#D4A02C', '#F3EFE6', '#0B3A2E', '#c8a45c', '#ffffff', '#e8c76a'];
-        const confettiPieces = [];
-        const CONFETTI_COUNT = 150;
-
-        class ConfettiPiece {
-            constructor() {
-                this.reset();
-                this.y = Math.random() * -confettiCanvas.height; // Start above screen
-            }
-            reset() {
-                this.x = Math.random() * confettiCanvas.width;
-                this.y = -20;
-                this.size = Math.random() * 8 + 4;
-                this.color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
-                this.speedY = Math.random() * 3 + 1.5;
-                this.speedX = Math.random() * 2 - 1;
-                this.rotation = Math.random() * 360;
-                this.rotationSpeed = Math.random() * 6 - 3;
-                this.opacity = 1;
-                this.shape = Math.random() > 0.5 ? 'rect' : 'circle';
-            }
-            update() {
-                this.y += this.speedY;
-                this.x += this.speedX + Math.sin(this.y * 0.01) * 0.5;
-                this.rotation += this.rotationSpeed;
-                if (this.y > confettiCanvas.height + 20) {
-                    this.opacity -= 0.02;
-                    if (this.opacity <= 0) this.reset();
-                }
-            }
-            draw() {
-                confettiCtx.save();
-                confettiCtx.translate(this.x, this.y);
-                confettiCtx.rotate(this.rotation * Math.PI / 180);
-                confettiCtx.globalAlpha = this.opacity;
-                confettiCtx.fillStyle = this.color;
-                if (this.shape === 'rect') {
-                    confettiCtx.fillRect(-this.size / 2, -this.size / 4, this.size, this.size / 2);
-                } else {
-                    confettiCtx.beginPath();
-                    confettiCtx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
-                    confettiCtx.fill();
-                }
-                confettiCtx.restore();
-            }
-        }
-
-        for (let i = 0; i < CONFETTI_COUNT; i++) {
-            confettiPieces.push(new ConfettiPiece());
-        }
-
-        let confettiActive = true;
-        let confettiFrameCount = 0;
-
-        function animateConfetti() {
-            if (!confettiActive) return;
-            confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
-            confettiPieces.forEach(p => { p.update(); p.draw(); });
-            confettiFrameCount++;
-            // Stop after ~5 seconds on mobile, keep going on desktop
-            if (confettiFrameCount > 300 && window.innerWidth < 768) {
-                confettiActive = false;
-                confettiCanvas.style.display = 'none';
-                return;
-            }
-            requestAnimationFrame(animateConfetti);
-        }
-
-        window.addEventListener('resize', () => {
-            confettiCanvas.width = window.innerWidth;
-            confettiCanvas.height = window.innerHeight;
-        });
-
-        // Start confetti when Luzon page is shown
-        const originalShowPage = showPage;
-        showPage = function(pageId) {
-            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            window.scrollTo(0, 0);
-            setTimeout(initScrollReveal, 100);
-            // Restart confetti for luzon page
-            if (pageId === 'luzon-page') {
-                confettiActive = true;
-                confettiFrameCount = 0;
-                confettiCanvas.style.display = 'block';
-                animateConfetti();
-            } else {
-                confettiActive = false;
-                confettiCanvas.style.display = 'none';
-            }
-        };
-
-        // Also override showRegionalPage
-        showRegionalPage = function(region) {
-            showPage(region + '-page');
-        };
-
-        // Start confetti on initial load if luzon is active
-        if (document.getElementById('luzon-page').classList.contains('active')) {
-            animateConfetti();
-        }
 
         // ============================================
         // NEW: Floating Particles Background
