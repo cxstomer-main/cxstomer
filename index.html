@@ -1,0 +1,2333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CXSTOMER 5th Anniversary - Regional Meet</title>
+    <link rel="icon" type="image/png" href="download.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           CSS VARIABLES - Easy to customize colors
+           ============================================ */
+        :root {
+            --jungle: #0B3A2E;
+            --ivory: #F3EFE6;
+            --gold: #D4A02C;
+            --offwhite: #F7F7F5;
+            --offwhite-72: rgba(247, 247, 245, 0.72);
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-sans); background-color: var(--jungle); color: var(--offwhite); line-height: 1.6; overflow-x: hidden; }
+        .font-serif { font-family: var(--font-serif); }
+        .font-sans { font-family: var(--font-sans); }
+        .text-gold { color: var(--gold); }
+        .bg-jungle { background-color: var(--jungle); }
+        .bg-ivory { background-color: var(--ivory); }
+        .text-jungle { color: var(--jungle); }
+
+        .page { display: none; min-height: 100vh; }
+        .page.active { display: block; }
+
+        .tropical-overlay { position: absolute; inset: 0; background-image: url('tropical-leaves.png'); background-size: cover; background-position: center; opacity: 0.2; pointer-events: none; mix-blend-mode: normal; }
+        .vignette { position: absolute; inset: 0; background: radial-gradient(circle at 50% 45%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 100%); pointer-events: none; }
+
+        /* Landing Page */
+        .landing-page { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; overflow: hidden; }
+        .landing-content { position: relative; z-index: 10; text-align: center; max-width: 900px; transform: translateY(-5vh); }
+        .landing-title { font-family: var(--font-serif); font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 600; line-height: 1; margin-bottom: 1.5rem; letter-spacing: -0.01em; }
+        .landing-title span { font-style: italic; }
+        .landing-subtitle { font-size: clamp(1rem, 2vw, 1.25rem); color: var(--offwhite-72); max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.6; }
+        .landing-footer { position: absolute; bottom: 2rem; left: 0; right: 0; display: flex; justify-content: space-between; padding: 0 3rem; font-size: 0.875rem; color: var(--offwhite-72); }
+
+        /* Buttons */
+        .btn-primary { display: inline-block; padding: 0.875rem 2rem; border: 1px solid var(--offwhite); color: var(--offwhite); background: transparent; font-family: var(--font-sans); font-size: 0.875rem; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease; text-decoration: none; }
+        .btn-primary:hover { background: var(--offwhite); color: var(--jungle); }
+        .btn-gold { display: inline-block; padding: 0.875rem 2rem; border: 1px solid var(--gold); color: var(--gold); background: transparent; font-family: var(--font-sans); font-size: 0.875rem; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease; text-decoration: none; }
+        .btn-gold:hover { background: var(--gold); color: var(--jungle); }
+        .btn-gold-solid { display: inline-block; padding: 1rem 2.5rem; background: var(--gold); color: var(--jungle); font-family: var(--font-sans); font-size: 0.875rem; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease; border: none; text-decoration: none; }
+        .btn-gold-solid:hover { background: var(--offwhite); }
+
+        /* Location Page */
+        .location-page { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; }
+        .location-label { font-size: 0.875rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 3rem; position: relative; z-index: 10; }
+        .location-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; width: 100%; max-width: 1000px; position: relative; z-index: 10; }
+        .location-card { background: rgba(247, 247, 245, 0.06); border: 1px solid rgba(247, 247, 245, 0.18); padding: 2.5rem 2rem; cursor: pointer; transition: all 0.3s ease; }
+        .location-card:hover { transform: translateY(-6px); border-color: rgba(247, 247, 245, 0.35); }
+        .location-card h3 { font-family: var(--font-serif); font-size: 2.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .location-card p { font-size: 0.875rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--offwhite-72); }
+        .location-card::after { content: ''; display: block; width: 3rem; height: 1px; background: var(--gold); margin-top: 1.5rem; transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
+        .location-card:hover::after { transform: scaleX(1); }
+        .location-helper { font-size: 0.875rem; color: var(--offwhite-72); margin-top: 2.5rem; position: relative; z-index: 10; }
+        .back-link { position: absolute; top: 2rem; left: 2rem; color: var(--offwhite); text-decoration: none; font-size: 0.875rem; z-index: 10; transition: color 0.3s ease; }
+        .back-link:hover { color: var(--gold); }
+
+        /* Regional Page */
+        .regional-page { position: relative; }
+        .hero-section { position: relative; min-height: 100vh; display: flex; flex-direction: column; padding: 2rem; }
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem; position: relative; z-index: 10; }
+        .nav-logo { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 600; color: var(--offwhite); text-decoration: none; transition: color 0.3s ease; }
+        .nav-logo:hover { color: var(--gold); }
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a { color: var(--offwhite); text-decoration: none; font-size: 0.875rem; transition: color 0.3s ease; }
+        .nav-links a:hover { color: var(--gold); }
+        .info-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; position: relative; z-index: 10; }
+        .info-item { text-align: left; }
+        .info-item label { display: block; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--offwhite-72); margin-bottom: 0.25rem; }
+        .info-item span { font-size: 0.9375rem; }
+        .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 10; }
+        .hero-subtitle { font-size: 0.875rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--offwhite-72); margin-bottom: 1rem; }
+        .hero-title { font-family: var(--font-serif); font-size: clamp(3rem, 8vw, 7rem); font-weight: 600; line-height: 1; margin-bottom: 1.5rem; }
+        .hero-description { font-size: 1.125rem; color: var(--offwhite-72); max-width: 500px; margin-bottom: 2rem; line-height: 1.6; }
+
+        /* Light Sections */
+        .light-section { background: var(--ivory); padding: 5rem 2rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .section-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; }
+        @media (max-width: 768px) { .section-grid { grid-template-columns: 1fr; } }
+        .closing-text a { color: #007bff; text-decoration: none; font-weight: 500; }
+        .venue-image { display: block; transition: all 0.3s ease; border-radius: 10px; }
+        .venue-image:hover { transform: translateY(-5px); box-shadow: 0 0 15px rgba(0, 255, 100, 0.6), 0 10px 25px rgba(0, 0, 0, 0.2); cursor: pointer; }
+        .venue-image:active { transform: scale(0.97); box-shadow: 0 0 10px rgba(0, 255, 100, 0.8); }
+        .closing-text a:hover { text-decoration: underline; }
+        .timeline-date { font-size: 1.5rem; font-weight: 700; margin: 20px 0 10px; color: #22c55e; }
+        .section-title { font-family: var(--font-serif); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 600; color: var(--jungle); margin-bottom: 1.5rem; }
+        .section-text { color: rgba(11, 58, 46, 0.8); line-height: 1.7; margin-bottom: 1rem; }
+        .venue-image { width: 100%; aspect-ratio: 16/9; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.18); }
+        .image-caption { font-size: 0.875rem; color: rgba(11, 58, 46, 0.6); margin-top: 1rem; }
+
+        /* Timeline */
+        .timeline { display: flex; flex-direction: column; gap: 1.5rem; }
+        .timeline-item { display: flex; align-items: center; gap: 1rem; }
+        .timeline-time { font-weight: 500; color: var(--jungle); width: 100px; flex-shrink: 0; }
+        .timeline-line { flex: 1; height: 1px; background: rgba(11, 58, 46, 0.2); }
+        .timeline-activity { color: rgba(11, 58, 46, 0.8); flex: 1; }
+        .faq-item { margin-bottom: 1rem; }
+        .faq-question { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.5rem; }
+        .faq-icon { color: var(--gold); flex-shrink: 0; margin-top: 0.2rem; }
+        .faq-question h4 { font-weight: 500; color: var(--jungle); line-height: 1.4; }
+        .faq-answer { font-size: 0.9375rem; color: rgba(11, 58, 46, 0.7); padding-left: 2rem; line-height: 1.6; }
+        
+        /* Van Transfer Section */
+        .van-transfer-section { background: var(--ivory); padding: 4rem 2rem; border-top: 1px solid rgba(11, 58, 46, 0.1); }
+        .van-transfer-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+        .van-transfer-icon { color: var(--gold); }
+        .van-transfer-title { font-family: var(--font-serif); font-size: 2rem; font-weight: 600; color: var(--jungle); }
+        .van-transfer-desc { color: rgba(11, 58, 46, 0.8); margin-bottom: 2rem; }
+
+        /* Pickup Points Accordion */
+        .pickup-accordion { border: 1px solid rgba(11, 58, 46, 0.2); margin-bottom: 2rem; }
+        .pickup-header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; background: rgba(11, 58, 46, 0.05); cursor: pointer; transition: background 0.3s ease; }
+        .pickup-header:hover { background: rgba(11, 58, 46, 0.1); }
+        .pickup-header h4 { font-weight: 500; color: var(--jungle); display: flex; align-items: center; gap: 0.75rem; }
+        .pickup-toggle { color: var(--gold); font-size: 1.25rem; transition: transform 0.3s ease; }
+        .pickup-accordion.active .pickup-toggle { transform: rotate(180deg); }
+        .pickup-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .pickup-accordion.active .pickup-content { max-height: 600px; }
+        .pickup-list { padding: 1.5rem; }
+        .pickup-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid rgba(11, 58, 46, 0.1); }
+        .pickup-item:last-child { border-bottom: none; }
+        .pickup-number { width: 28px; height: 28px; background: var(--gold); color: var(--jungle); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.875rem; font-weight: 600; flex-shrink: 0; }
+        .pickup-info h5 { font-weight: 500; color: var(--jungle); margin-bottom: 0.25rem; }
+        .pickup-info p { font-size: 0.875rem; color: rgba(11, 58, 46, 0.7); }
+
+        /* Outfit Inspiration Section */
+        .outfit-section { background: var(--ivory); padding: 4rem 2rem; border-top: 1px solid rgba(11, 58, 46, 0.1); }
+        .outfit-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+        .outfit-icon { color: var(--gold); }
+        .outfit-title { font-family: var(--font-serif); font-size: 2rem; font-weight: 600; color: var(--jungle); }
+        .outfit-desc { color: rgba(11, 58, 46, 0.8); margin-bottom: 2rem; }
+        
+        /* Outfit Accordion */
+        .outfit-accordion { border: 1px solid rgba(11, 58, 46, 0.2); margin-bottom: 2rem; border-radius: 8px; overflow: hidden; }
+        .outfit-accordion-header { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; background: linear-gradient(135deg, rgba(212, 160, 44, 0.1) 0%, rgba(11, 58, 46, 0.05) 100%); cursor: pointer; transition: all 0.3s ease; }
+        .outfit-accordion-header:hover { background: linear-gradient(135deg, rgba(212, 160, 44, 0.2) 0%, rgba(11, 58, 46, 0.1) 100%); }
+        .outfit-accordion-header h4 { font-weight: 500; color: var(--jungle); display: flex; align-items: center; gap: 0.75rem; font-size: 1.1rem; }
+        .outfit-accordion-toggle { color: var(--gold); font-size: 1.25rem; transition: transform 0.3s ease; }
+        .outfit-accordion.active .outfit-accordion-toggle { transform: rotate(180deg); }
+        .outfit-accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
+        .outfit-accordion.active .outfit-accordion-content { max-height: 1000px; }
+        
+        .outfit-grid { padding: 1.5rem; display: grid; grid-template-columns: 1fr; justify-items: center; }
+        .outfit-item { width: 200%; max-width: 350px; display: flex; flex-direction: column; align-items: center; }
+        .outfit-item img { width: 200%; height: auto; max-width: 100%; aspect-ratio: 3 / 4; object-fit: contain; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); transition: all 0.3s ease; }
+        .outfit-item img:hover { transform: translateY(-5px); box-shadow: 0 12px 35px rgba(0,0,0,0.2); }
+        .outfit-item-label { margin-top: 1rem; font-size: 0.9rem; color: var(--jungle); font-weight: 500; text-align: center; }
+        @media (max-width: 768px) { .outfit-grid { padding: 1rem; } .outfit-item { max-width: 100%; } .outfit-item img { width: 100%; max-width: 280px; } }
+
+        /* Contact Info */
+        .contact-info { background: rgba(11, 58, 46, 0.05); padding: 1.5rem; border-left: 3px solid var(--gold); }
+        .contact-info h5 { font-weight: 500; color: var(--jungle); margin-bottom: 0.75rem; }
+        .contact-item { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; font-size: 0.9375rem; color: rgba(11, 58, 46, 0.8); }
+        .contact-item:last-child { margin-bottom: 0; }
+
+        /* Venue Info & Map */
+        .venue-info-section { background: var(--ivory); padding: 4rem 2rem; border-top: 1px solid rgba(11, 58, 46, 0.1); }
+        .venue-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .venue-info-title { font-family: var(--font-serif); font-size: 2rem; font-weight: 600; color: var(--jungle); margin-bottom: 1.5rem; }
+        .venue-info-item { margin-bottom: 1.5rem; }
+        .venue-info-item label { display: block; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(11, 58, 46, 0.6); margin-bottom: 0.5rem; }
+        .venue-info-item p { font-size: 1rem; color: var(--jungle); }
+        .map-container { width: 100%; height: 350px; border-radius: 8px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .map-container iframe { width: 100%; height: 100%; border: none; }
+
+        /* Closing Section */
+        .closing-section { position: relative; min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 4rem 2rem; }
+        .closing-title { font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 600; margin-bottom: 2rem; }
+        .closing-text { color: var(--offwhite-72); margin-top: 1.5rem; }
+        .closing-text span { color: var(--gold); }
+
+        /* Footer */
+        .footer { background: var(--jungle); border-top: 1px solid rgba(247, 247, 245, 0.1); padding: 1.5rem 2rem; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .footer-text { font-size: 0.875rem; color: var(--offwhite-72); }
+        .footer-links { display: flex; gap: 1.5rem; }
+        .footer-links a { font-size: 0.875rem; color: var(--offwhite-72); text-decoration: none; transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--offwhite); }
+
+        /* Mobile Menu */
+        .mobile-menu-btn { display: none; background: none; border: none; color: var(--offwhite); font-size: 1.5rem; cursor: pointer; }
+
+        /* Animations */
+        .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        .slide-up { animation: slideUp 0.8s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .landing-footer { flex-direction: column; text-align: center; gap: 0.5rem; }
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .info-bar { grid-template-columns: 1fr 1fr; }
+            .section-grid { grid-template-columns: 1fr; }
+            .timeline-time { width: 80px; }
+            .footer-content { flex-direction: column; text-align: center; }
+            .venue-info-grid { grid-template-columns: 1fr; }
+            .map-container { height: 280px; }
+        }
+        @media (max-width: 480px) {
+            .location-cards { grid-template-columns: 1fr; }
+            .info-bar { grid-template-columns: 1fr; }
+        }
+
+        /* ============================================
+           NEW ENHANCEMENT STYLES
+           ============================================ */
+
+        /* ---- Confetti Canvas ---- */
+        #confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
+
+        /* ---- Custom Cursor ---- */
+        .custom-cursor { position: fixed; width: 12px; height: 12px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 10000; transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s, background 0.2s; mix-blend-mode: difference; }
+        .custom-cursor.hover { width: 40px; height: 40px; background: rgba(212, 160, 44, 0.3); border: 2px solid var(--gold); }
+        @media (max-width: 768px) { .custom-cursor { display: none; } }
+
+        /* ---- Event Banner ---- */
+        .event-banner { background: linear-gradient(135deg, var(--jungle) 0%, #0d4d3a 100%); padding: 4rem 2rem; text-align: center; position: relative; overflow: hidden; }
+        .event-banner::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 30% 70%, rgba(212, 160, 44, 0.08) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(212, 160, 44, 0.05) 0%, transparent 50%); animation: bannerPulse 8s ease-in-out infinite; }
+        @keyframes bannerPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        .event-banner-content { position: relative; z-index: 2; }
+        .event-banner-label { font-size: 0.875rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+        .event-banner-title { font-family: var(--font-serif); font-size: clamp(3rem, 8vw, 6rem); font-weight: 600; line-height: 1; margin-bottom: 1rem; }
+        .event-banner-title .italic { font-style: italic; color: var(--gold); }
+        .event-banner-subtitle { font-size: 1.125rem; color: var(--offwhite-72); max-width: 600px; margin: 0 auto 2rem; }
+        .event-banner-date { display: inline-flex; align-items: center; gap: 0.75rem; background: rgba(212, 160, 44, 0.15); border: 1px solid rgba(212, 160, 44, 0.3); padding: 0.75rem 1.5rem; border-radius: 50px; font-size: 0.9375rem; color: var(--gold); }
+        .banner-stat { display: inline-flex; flex-direction: column; align-items: center; margin: 0 1.5rem; }
+        .banner-stat-number { font-family: var(--font-serif); font-size: 2.5rem; font-weight: 600; color: var(--gold); line-height: 1; }
+        .banner-stat-label { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--offwhite-72); margin-top: 0.25rem; }
+        .banner-stats { display: flex; justify-content: center; margin-top: 2.5rem; flex-wrap: wrap; gap: 1rem; }
+
+        /* ---- Photo Gallery ---- */
+        .gallery-section { background: var(--ivory); padding: 5rem 2rem; position: relative; }
+        .gallery-header { text-align: center; margin-bottom: 3rem; }
+        .gallery-header .section-title { color: var(--jungle); }
+        .gallery-header p { color: rgba(11, 58, 46, 0.7); max-width: 600px; margin: 0 auto 2rem; }
+        .gallery-filters { display: flex; justify-content: center; gap: 0.75rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+        .gallery-filter-btn { padding: 0.6rem 1.5rem; border: 1px solid rgba(11, 58, 46, 0.2); background: transparent; color: var(--jungle); font-family: var(--font-sans); font-size: 0.8125rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; border-radius: 50px; transition: all 0.3s ease; }
+        .gallery-filter-btn:hover, .gallery-filter-btn.active { background: var(--jungle); color: var(--offwhite); border-color: var(--jungle); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); grid-auto-rows: 250px; gap: 0.75rem; max-width: 1400px; margin: 0 auto; }
+        .gallery-item { position: relative; overflow: hidden; border-radius: 8px; cursor: pointer; opacity: 0; transform: scale(0.9); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .gallery-item.visible { opacity: 1; transform: scale(1); }
+        .gallery-item.tall { grid-row: span 2; }
+        .gallery-item.wide { grid-column: span 2; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease, filter 0.4s ease; }
+        .gallery-item:hover img { transform: scale(1.08); filter: brightness(1.1); }
+        .gallery-item-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(11, 58, 46, 0.7) 0%, transparent 50%); opacity: 0; transition: opacity 0.4s ease; display: flex; align-items: flex-end; padding: 1.25rem; }
+        .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+        .gallery-item-caption { color: var(--offwhite); font-size: 0.875rem; font-weight: 500; }
+        .gallery-item-category { font-size: 0.75rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.25rem; }
+        .gallery-load-more { text-align: center; margin-top: 3rem; }
+        .gallery-counter { font-family: var(--font-serif); font-size: 1.25rem; color: var(--jungle); margin-bottom: 1.5rem; }
+        .gallery-counter span { color: var(--gold); font-weight: 600; }
+
+        /* ---- Lightbox ---- */
+        .lightbox { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.95); z-index: 10001; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.4s ease; }
+        .lightbox.active { opacity: 1; visibility: visible; }
+        .lightbox-img { max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 4px; transform: scale(0.9); transition: transform 0.4s ease; }
+        .lightbox.active .lightbox-img { transform: scale(1); }
+        .lightbox-close { position: absolute; top: 2rem; right: 2rem; width: 48px; height: 48px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; color: var(--offwhite); font-size: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; z-index: 10002; }
+        .lightbox-close:hover { background: var(--gold); color: var(--jungle); border-color: var(--gold); }
+        .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 50px; height: 50px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; color: var(--offwhite); font-size: 1.25rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; z-index: 10002; }
+        .lightbox-nav:hover { background: var(--gold); color: var(--jungle); }
+        .lightbox-prev { left: 2rem; }
+        .lightbox-next { right: 2rem; }
+        .lightbox-counter { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: var(--offwhite-72); font-size: 0.875rem; letter-spacing: 0.1em; }
+
+        /* ---- Video Section ---- */
+        .video-section { background: var(--jungle); padding: 5rem 2rem; position: relative; overflow: hidden; }
+        .video-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+        .video-header { text-align: center; margin-bottom: 3rem; position: relative; z-index: 2; }
+        .video-header .section-title { color: var(--offwhite); }
+        .video-header p { color: var(--offwhite-72); max-width: 600px; margin: 0 auto; }
+        .video-cinematic { position: relative; max-width: 1200px; margin: 0 auto; border-radius: 16px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.5); }
+        .video-cinematic video { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; }
+        .video-play-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3); cursor: pointer; transition: background 0.3s ease; }
+        .video-play-overlay:hover { background: rgba(0,0,0,0.15); }
+        .video-play-overlay.hidden { opacity: 0; pointer-events: none; }
+        .video-play-btn { width: 80px; height: 80px; background: rgba(212, 160, 44, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; border: 2px solid var(--gold); }
+        .video-play-btn:hover { transform: scale(1.1); background: var(--gold); }
+        .video-play-btn svg { width: 28px; height: 28px; fill: var(--jungle); margin-left: 4px; }
+        .video-caption { text-align: center; margin-top: 1.5rem; color: var(--offwhite-72); font-size: 0.9375rem; }
+
+        /* ---- Thank You Sandy Section ---- */
+        .sandy-section { background: linear-gradient(180deg, var(--ivory) 0%, #e8e4da 100%); padding: 6rem 2rem; position: relative; overflow: hidden; }
+        .sandy-section::before { content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(212, 160, 44, 0.1) 0%, transparent 70%); border-radius: 50%; }
+        .sandy-section::after { content: ''; position: absolute; bottom: -150px; left: -150px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(11, 58, 46, 0.05) 0%, transparent 70%); border-radius: 50%; }
+        .sandy-content { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: center; position: relative; z-index: 2; }
+        .sandy-portrait-wrapper { perspective: 1000px; }
+        .sandy-portrait { position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 25px 60px rgba(11, 58, 46, 0.25); transform-style: preserve-3d; }
+        .sandy-portrait img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; }
+        .sandy-portrait-frame { position: absolute; inset: -8px; border: 2px solid var(--gold); border-radius: 20px; opacity: 0.4; pointer-events: none; }
+        .sandy-text { position: relative; }
+        .sandy-label { display: inline-block; font-size: 0.8125rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; border: 1px solid rgba(212, 160, 44, 0.4); padding: 0.5rem 1.25rem; border-radius: 50px; }
+        .sandy-title { font-family: var(--font-serif); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 600; color: var(--jungle); line-height: 1.1; margin-bottom: 1.5rem; }
+        .sandy-title .highlight { color: var(--gold); font-style: italic; }
+        .sandy-message { color: rgba(11, 58, 46, 0.8); font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.5rem; }
+        .sandy-signature { font-family: var(--font-serif); font-size: 1.5rem; color: var(--jungle); font-style: italic; }
+        .sandy-role { font-size: 0.875rem; color: rgba(11, 58, 46, 0.6); margin-top: 0.5rem; }
+
+        /* ---- Team Section ---- */
+        .team-section { background: var(--jungle); padding: 6rem 2rem; position: relative; overflow: hidden; }
+        .team-section::before { content: ''; position: absolute; inset: 0; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(212,160,44,0.08)"/></svg>'); background-size: 60px 60px; opacity: 0.5; }
+        .team-header { text-align: center; margin-bottom: 4rem; position: relative; z-index: 2; }
+        .team-header .section-title { color: var(--offwhite); }
+        .team-header p { color: var(--offwhite-72); max-width: 500px; margin: 0 auto; }
+        .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
+        .team-card { text-align: center; opacity: 0; transform: translateY(40px); transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+        .team-card.visible { opacity: 1; transform: translateY(0); }
+        .team-card:nth-child(1).visible { transition-delay: 0s; }
+        .team-card:nth-child(2).visible { transition-delay: 0.1s; }
+        .team-card:nth-child(3).visible { transition-delay: 0.2s; }
+        .team-card:nth-child(4).visible { transition-delay: 0.3s; }
+        .team-card-photo { width: 180px; height: 180px; border-radius: 50%; overflow: hidden; margin: 0 auto 1.25rem; border: 3px solid rgba(212, 160, 44, 0.3); position: relative; transition: all 0.4s ease; }
+        .team-card:hover .team-card-photo { border-color: var(--gold); transform: scale(1.05); box-shadow: 0 0 30px rgba(212, 160, 44, 0.3); }
+        .team-card-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .team-card-photo::after { content: ''; position: absolute; inset: 0; border-radius: 50%; box-shadow: inset 0 0 20px rgba(11, 58, 46, 0.3); pointer-events: none; }
+        .team-card-name { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 600; color: var(--offwhite); margin-bottom: 0.25rem; }
+        .team-card-role { font-size: 0.875rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; }
+        .team-card-desc { font-size: 0.9375rem; color: var(--offwhite-72); margin-top: 0.75rem; line-height: 1.5; }
+
+        /* ---- Floating particles (subtle background) ---- */
+        .particles { position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.3; }
+        .particle { position: absolute; width: 4px; height: 4px; background: var(--gold); border-radius: 50%; animation: float linear infinite; }
+        @keyframes float { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; } }
+
+        /* ---- Scroll progress bar ---- */
+        .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--gold), #e8c76a); z-index: 10000; width: 0%; transition: width 0.1s linear; }
+
+        /* ---- Responsive for new sections ---- */
+        @media (max-width: 968px) {
+            .sandy-content { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
+            .sandy-portrait { max-width: 350px; margin: 0 auto; }
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); grid-auto-rows: 200px; }
+            .lightbox-prev { left: 1rem; }
+            .lightbox-next { right: 1rem; }
+        }
+        @media (max-width: 480px) {
+            .team-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 150px; }
+            .gallery-item.wide { grid-column: span 1; }
+            .banner-stats { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="customCursor"></div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- LANDING PAGE -->
+    <div id="landing-page" class="page active">
+        <div class="landing-page">
+            <div class="tropical-overlay"></div>
+            <div class="vignette"></div>
+            <div class="landing-content">
+                <h1 class="landing-title fade-in">WELCOME TO CXSTOMER<br><span>EVENT PAGE</span></h1>
+                <p class="landing-subtitle slide-up delay-2">A milestone worth gathering for—bringing together our community across <span class="text-gold">The Philippines </span> and <span class="text-gold">Jamaica.</span></p>
+                <button class="btn-primary slide-up delay-3" onclick="showPage('location-page')">Choose Your Location</button>
+            </div>
+            <div class="landing-footer">
+                <span>April–May 2026</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOCATION SELECTOR PAGE -->
+    <div id="location-page" class="page">
+        <div class="location-page">
+            <div class="tropical-overlay"></div>
+            <div class="vignette"></div>
+            <a href="#" class="back-link" onclick="showPage('landing-page'); return false;">&#8592; Back</a>
+            <p class="location-label">Choose Your Location</p>
+            <div class="location-cards">
+                <div class="location-card" onclick="showRegionalPage('luzon')"><h3>Manila</h3><p>April 18</p></div>
+                <div class="location-card" onclick="showRegionalPage('visayas')"><h3>Cebu</h3><p>April 25</p></div>
+                <div class="location-card" onclick="showRegionalPage('mindanao')"><h3>CDO</h3><p>May 2</p></div>
+                <div class="location-card" onclick="showRegionalPage('jamaica')"><h3>Jamaica</h3><p>April 25</p></div>
+            </div>
+            <p class="location-helper">Select a region to view schedule &amp; venue.</p>
+        </div>
+    </div>
+
+    <!-- ============================================
+         LUZON PAGE - ENHANCED WITH RECAP FEATURES
+         ============================================ -->
+    <div id="luzon-page" class="page regional-page">
+
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="tropical-overlay"></div>
+            <div class="vignette"></div>
+            <nav class="nav-bar">
+                <a href="#" class="nav-logo" onclick="showPage('landing-page'); return false;">CXSTOMER</a>
+                <div class="nav-links">
+                    <a href="#" onclick="showRegionalPage('luzon'); return false;">Manila</a>
+                    <a href="#" onclick="showRegionalPage('visayas'); return false;">Cebu</a>
+                    <a href="#" onclick="showRegionalPage('mindanao'); return false;">CDO</a>
+                    <a href="#" onclick="showRegionalPage('jamaica'); return false;">Jamaica</a>
+                </div>
+            </nav>
+            <div class="info-bar">
+                <div class="info-item"><label>Event Date</label><span>April 18, 2026</span></div>
+                <div class="info-item"><label>Check-in starts</label><span>3:00 PM</span></div>
+                <div class="info-item"><label>Event begins at</label><span>4:00 PM</span></div>
+                <div class="info-item"><label>See you there</label><span>Casa Alessandra, Mexico Pampanga</span></div>
+            </div>
+            <div class="hero-content">
+                <p class="hero-subtitle">CXSTOMER 5th Anniversary - Regional Meet</p>
+                <h1 class="hero-title">LUZON TAKEOVER</h1>
+                <p class="hero-description">Join us for a thoughtfully curated evening of connection, conversation, and celebration as Cxstomer marks its 5th year anniversary!</p>
+                <a href="#luzon-details" class="btn-gold">View Details</a>
+            </div>
+        </div>
+        
+        <!-- Event Details -->
+        <div id="luzon-details" class="light-section">
+            <div class="container">
+                <div class="section-grid">
+                    <div class="reveal"><h2 class="section-title">Event details</h2></div>
+                    <div class="reveal">
+                        <p class="section-text">This marks the 5th year of Cxstomer—a milestone made meaningful by the people behind it. Join us in Luzon for an intimate gathering designed to bring the community together through conversation, connection, and shared moments.</p>
+                        <p class="section-text">An evening awaits where guests can enjoy a thoughtfully curated dining experience, meaningful exchanges, and a relaxed atmosphere that celebrates how far we've come—together.</p>
+                    </div>
+                </div>
+                <div class="reveal" style="margin-top: 3rem;">
+                    <a href="https://www.facebook.com/people/Casa-Alessandra/61581206527609/" target="_blank">
+                          <img src="assets/event-1.jpg" alt="Casa Alessandra venue" class="venue-image">
+                    </a>
+                    <p class="image-caption">CASA ALESSANDRA</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Venue Info & Map -->
+        <div class="venue-info-section">
+            <div class="container">
+                <div class="venue-info-grid">
+                    <div class="reveal">
+                        <h3 class="venue-info-title">Venue Information</h3>
+                        <div class="venue-info-item">
+                            <label>Venue Name</label>
+                            <p>Casa Alessandra</p>
+                        </div>
+                        <div class="venue-info-item">
+                            <label>Address</label>
+                            <p>Mexico, Pampanga, Philippines</p>
+                        </div>
+                        <div class="venue-info-item">
+                            <label>Contact</label>
+                            <p>+63 (0)45 123 4567</p>
+                        </div>
+                    </div>
+                    <div class="reveal">
+                        <div class="map-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3851.4662131925925!2d120.67528668438159!3d15.132719826248978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3396f17b1269811d%3A0x95110bd60d7341d!2sCasa%20Alessandra!5e0!3m2!1sen!2sus!4v1774525478787!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Program Flow -->
+        <div class="light-section">
+            <div class="container">
+                <div class="section-grid">
+                    <div class="reveal"><h2 class="section-title">Program flow</h2></div>
+                    <div class="reveal">
+                        <div class="timeline">
+                            <div class="timeline-date">April 18, 2026</div>
+                            <div class="timeline-item"><span class="timeline-time">3:00 PM</span><div class="timeline-line"></div><span class="timeline-activity">Registration</span></div>
+                            <div class="timeline-item"><span class="timeline-time">4-5 PM</span><div class="timeline-line"></div><span class="timeline-activity">Welcome remarks</span></div>
+                            <div class="timeline-item"><span class="timeline-time">7:00 PM</span><div class="timeline-line"></div><span class="timeline-activity">Dinner service</span></div>
+                            <div class="timeline-item"><span class="timeline-time">8:00 PM</span><div class="timeline-line"></div><span class="timeline-activity">Program</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <!-- Outfit Inspiration Section -->
+        <div class="outfit-section">
+            <div class="container">
+                <div class="reveal">
+                    <div class="outfit-header">
+                        <svg class="outfit-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/>
+                        </svg>
+                        <h3 class="outfit-title">Outfit Inspiration</h3>
+                    </div>
+                    <p class="outfit-desc">Need inspiration on what to wear? Check out these outfit ideas perfect for our Luzon celebration!</p>
+                    
+                    <!-- Outfit Accordion -->
+                    <div class="outfit-accordion" id="luzon-outfit">
+                        <div class="outfit-accordion-header" onclick="togglePickup('luzon-outfit')">
+                            <h4>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                                    <path d="M12 2 2 7l10 5 10-5-10-5z"/>
+                                    <path d="m2 17 10 5 10-5"/>
+                                    <path d="m2 12 10 5 10-5"/>
+                                </svg>
+                                Need an inspiration on what to wear? Show me!
+                            </h4>
+                            <span class="outfit-accordion-toggle">&#9660;</span>
+                        </div>
+                        <div class="outfit-accordion-content">
+                            <div class="outfit-grid">
+                                <div class="outfit-item">
+                                    <img src="outfit.png" alt="Women's outfit inspiration for Luzon event">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FAQs -->
+        <div class="light-section">
+            <div class="container">
+                <div class="section-grid">
+                    <div class="reveal"><h2 class="section-title">FAQs</h2></div>
+                    <div class="reveal faq-grid">
+                        <!-- NEW: +1 FAQ -->
+                        <div class="faq-item" style="grid-column: 1 / -1; background: rgba(212, 160, 44, 0.1); padding: 1.5rem; border-left: 3px solid var(--gold);">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                                <h4>Can I bring a +1 or guest to the event?</h4>
+                            </div>
+                            <p class="faq-answer">We've had a few questions about bringing a +1 to the meetups. We completely understand how special it would be to share this with loved ones, and we truly appreciate the enthusiasm around the event.<br><br>This celebration has been planned as a time for our team to connect and bond with one another, so attendance will be limited to employees only.<br><br>Thank you so much for your understanding, and please feel free to reach out to me if you have any questions or concerns.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H5.24a2 2 0 0 0-1.8 1.1l-.8 1.63A6 6 0 0 0 2 12.42V16h2"/>
+                                    <circle cx="6.5" cy="16.5" r="2.5"/>
+                                    <circle cx="16.5" cy="16.5" r="2.5"/>
+                                </svg>
+                                <h4>Is parking available at the venue?</h4>
+                            </div>
+                            <p class="faq-answer">Yes, parking will be available for guests at the venue.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                                <h4>Who can I contact for questions?</h4>
+                            </div>
+                            <p class="faq-answer">For any inquiries, you may reach out via Slack to Blad, KM, HEs, or Pearl.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                <h4>How do I get to the venue?</h4>
+                            </div>
+                            <p class="faq-answer">You can find the exact location and directions here: <a href="https://www.google.com/maps/dir//'" target="_blank" rel="noopener noreferrer">Click here</a> <br> We recommend checking the route in advance and allowing extra travel time on the day of the event.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/>
+                                    <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/>
+                                    <path d="M18 12h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/>
+                                    <path d="M12 10v2"/>
+                                    <path d="M12 16v2"/>
+                                </svg>
+                                <h4>Will there be room arrangements for overnight stays?</h4>
+                            </div>
+                            <p class="faq-answer">Room assignments and bed allocations will be shared soon. We aim to provide each guest with their own bed, though some room sharing may be required.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                                <h4>Will there be transportation provided?</h4>
+                            </div>
+                            <p class="faq-answer">Yes, a free van transfer will be available on April 18, 2026 going to the event, and on April 19, 2026 for the return trip. More details will be shared soon.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                    <path d="M12 17h.01"/>
+                                </svg>
+                                <h4>What if my schedule conflicts with the event?</h4>
+                            </div>
+                            <p class="faq-answer">For concerns regarding schedules, leaves, or PTO, please coordinate with Miss Diana Suarez or your respective Team Leads.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Van Transfer Section -->
+        <div class="van-transfer-section">
+            <div class="container">
+                <div class="reveal">
+                    <div class="van-transfer-header">
+                        <svg class="van-transfer-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="6" width="18" height="12" rx="2"/>
+                            <path d="M6 18v2"/>
+                            <path d="M18 18v2"/>
+                            <circle cx="7" cy="12" r="1"/>
+                            <circle cx="17" cy="12" r="1"/>
+                        </svg>
+                        <h3 class="van-transfer-title">Free Van Transfer</h3>
+                    </div>
+                    <p class="van-transfer-desc">Van Transfer is back and forth. We've arranged convenient pickup points for your convenience.</p>
+                    
+                    <!-- Pickup Points Accordion -->
+                    <div class="pickup-accordion" id="luzon-pickup">
+                        <div class="pickup-header" onclick="togglePickup('luzon-pickup')">
+                            <h4>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                View Pickup Points
+                            </h4>
+                            <span class="pickup-toggle">&#9660;</span>
+                        </div>
+                        <div class="pickup-content">
+                            <div class="pickup-list">
+                                <div class="pickup-item">
+                                    <span class="pickup-number">1</span>
+                                    <div class="pickup-info">
+                                        <h5>SM City Sto. Tomas</h5>
+                                        <p>Main Entrance (Pan-Philippine Hwy)</p>
+                                    </div>
+                                </div>
+                                <div class="pickup-item">
+                                    <span class="pickup-number">2</span>
+                                    <div class="pickup-info">
+                                        <h5>SM City Dasmari&#241;as</h5>
+                                        <p>Main Entrance (Aguinaldo Hwy)</p>
+                                    </div>
+                                </div>
+                                <div class="pickup-item">
+                                    <span class="pickup-number">3</span>
+                                    <div class="pickup-info">
+                                        <h5>SLEX - Sta. Rosa</h5>
+                                        <p>Shell SLEX Northbound (Mamplasan)</p>
+                                    </div>
+                                </div>
+                                <div class="pickup-item">
+                                    <span class="pickup-number">4</span>
+                                    <div class="pickup-info">
+                                        <h5>Shell Magallanes</h5>
+                                        <p>South Luzon Expressway (Northbound)</p>
+                                    </div>
+                                </div>
+                                <div class="pickup-item">
+                                    <span class="pickup-number">5</span>
+                                    <div class="pickup-info">
+                                        <h5>SM City Marilao</h5>
+                                        <p>NLEX Frontage Road Entrance</p>
+                                    </div>
+                                </div>
+                                <div class="pickup-item">
+                                    <span class="pickup-number">&#9733;</span>
+                                    <div class="pickup-info">
+                                        <h5>Final Stop: Casa Alessandra</h5>
+                                        <p>Mexico, Pampanga</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="contact-info">
+                        <h5>Contact Information</h5>
+                        <div class="contact-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                            <span>Driver: [Add Driver Contact]</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            <span>Point of Contact: [Add POC Name &amp; Contact]</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             NEW: EVENT RECAP BANNER
+             ============================================ -->
+        <div class="event-banner" id="recap-banner">
+            <div class="event-banner-content">
+                <p class="event-banner-label reveal">A Night to Remember</p>
+                <h2 class="event-banner-title reveal">LUZON <span class="italic">Takeover</span></h2>
+                <p class="event-banner-subtitle reveal">Celebrating five incredible years of Cxstomer with the people who made it all possible. Here is how the night unfolded.</p>
+                <div class="event-banner-date reveal">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                    April 18, 2026 &bull; Casa Alessandra, Mexico Pampanga
+                </div>
+                <div class="banner-stats reveal">
+                    <div class="banner-stat">
+                        <span class="banner-stat-number" data-count="285">0</span>
+                        <span class="banner-stat-label">Photos</span>
+                    </div>
+                    <div class="banner-stat">
+                        <span class="banner-stat-number" data-count="1">0</span>
+                        <span class="banner-stat-label">Highlight Reel</span>
+                    </div>
+                    <div class="banner-stat">
+                        <span class="banner-stat-number" data-count="5">0</span>
+                        <span class="banner-stat-label">Years Strong</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             NEW: PHOTO GALLERY SECTION
+             ============================================ -->
+        <div class="gallery-section" id="gallery">
+            <div class="gallery-header">
+                <p class="reveal" style="font-size: 0.875rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;">The Memories</p>
+                <h2 class="section-title reveal">Photo Gallery</h2>
+                <p class="reveal">Relive every moment from the Luzon Takeover — from candid laughter to the grand celebration. <strong style="color: var(--jungle);">285 photos</strong> captured across one unforgettable evening.</p>
+            </div>
+            <div class="gallery-filters reveal">
+                <button class="gallery-filter-btn active" data-filter="all" onclick="filterGallery('all')">All Photos</button>
+                <button class="gallery-filter-btn" data-filter="venue" onclick="filterGallery('venue')">Venue</button>
+                <button class="gallery-filter-btn" data-filter="moments" onclick="filterGallery('moments')">Moments</button>
+                <button class="gallery-filter-btn" data-filter="people" onclick="filterGallery('people')">People</button>
+                <button class="gallery-filter-btn" data-filter="food" onclick="filterGallery('food')">Food &amp; Drinks</button>
+            </div>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Gallery items will be populated by JavaScript -->
+            </div>
+            <div class="gallery-load-more reveal">
+                <div class="gallery-counter" id="galleryCounter">Showing <span id="showingCount">0</span> of <span>285</span> photos</div>
+                <button class="btn-gold" id="loadMoreBtn" onclick="loadMorePhotos()">Load More Photos</button>
+            </div>
+        </div>
+
+        <!-- ============================================
+             NEW: LIGHTBOX
+             ============================================ -->
+        <div class="lightbox" id="lightbox">
+            <button class="lightbox-close" onclick="closeLightbox()">&#10005;</button>
+            <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">&#10094;</button>
+            <img class="lightbox-img" id="lightboxImg" src="" alt="">
+            <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">&#10095;</button>
+            <div class="lightbox-counter" id="lightboxCounter">1 / 285</div>
+        </div>
+
+        <!-- ============================================
+             NEW: VIDEO SECTION
+             ============================================ -->
+        <div class="video-section" id="video-section">
+            <div class="video-header">
+                <p class="reveal" style="font-size: 0.875rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;">The Highlight Reel</p>
+                <h2 class="section-title reveal">Event Recap Video</h2>
+                <p class="reveal">Experience the energy, the laughter, and the celebration in motion.</p>
+            </div>
+            <div class="video-cinematic reveal">
+                <video id="eventVideo" poster="assets/event-1.jpg" preload="metadata">
+                    <source src="assets/event-highlight.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-play-overlay" id="videoOverlay" onclick="playVideo()">
+                    <div class="video-play-btn">
+                        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                    </div>
+                </div>
+            </div>
+            <p class="video-caption reveal">Cxstomer 5th Anniversary — Luzon Takeover Official Highlight Video</p>
+        </div>
+
+        <!-- ============================================
+             NEW: THANK YOU SANDY SECTION
+             ============================================ -->
+        <div class="sandy-section" id="sandy-section">
+            <div class="sandy-content">
+                <div class="sandy-portrait-wrapper reveal">
+                    <div class="sandy-portrait" id="sandyPortrait">
+                        <img src="assets/sandy-ceo.jpg" alt="Sandy, CEO of Cxstomer">
+                        <div class="sandy-portrait-frame"></div>
+                    </div>
+                </div>
+                <div class="sandy-text reveal">
+                    <span class="sandy-label">With Gratitude</span>
+                    <h2 class="sandy-title">Thank You, <span class="highlight">Sandy</span></h2>
+                    <p class="sandy-message">To the visionary who believed in building something extraordinary — thank you for five years of leadership, inspiration, and unwavering commitment to the Cxstomer family. This night was a testament to the culture you've built: one of connection, celebration, and genuine care for every person on this team.</p>
+                    <p class="sandy-message">The Luzon Takeover wasn't just an event. It was a reflection of everything Cxstomer stands for — and that starts with you.</p>
+                    <p class="sandy-signature">— The Cxstomer Family</p>
+                    <p class="sandy-role">CEO, Cxstomer.com</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             NEW: TEAM SECTION
+             ============================================ -->
+        <div class="team-section" id="team-section">
+            <div class="team-header">
+                <p class="reveal" style="font-size: 0.875rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;">The Dream Team</p>
+                <h2 class="section-title reveal">The Team Behind It All</h2>
+                <p class="reveal">This incredible evening would not have been possible without the dedication, heart, and hard work of these amazing individuals.</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card reveal" id="teamCard1">
+                    <div class="team-card-photo">
+                        <img src="assets/katrina.jpg" alt="Katrina Gonzales">
+                    </div>
+                    <h3 class="team-card-name">Katrina Gonzales</h3>
+                    <p class="team-card-role">Event Lead</p>
+                    <p class="team-card-desc">The creative force who envisioned and orchestrated every detail of the Luzon Takeover.</p>
+                </div>
+                <div class="team-card reveal" id="teamCard2">
+                    <div class="team-card-photo">
+                        <img src="assets/bladimir.jpg" alt="Bladimir Dela Cruz">
+                    </div>
+                    <h3 class="team-card-name">Bladimir Dela Cruz</h3>
+                    <p class="team-card-role">Logistics Coordinator</p>
+                    <p class="team-card-desc">Made sure every moving piece came together seamlessly — from transport to timing.</p>
+                </div>
+                <div class="team-card reveal" id="teamCard3">
+                    <div class="team-card-photo">
+                        <img src="assets/hes.jpg" alt="Hes Intong">
+                    </div>
+                    <h3 class="team-card-name">Hes Intong</h3>
+                    <p class="team-card-role">Program &amp; Entertainment</p>
+                    <p class="team-card-desc">Curated the laughs, the games, and the moments that brought everyone closer together.</p>
+                </div>
+                <div class="team-card reveal" id="teamCard4">
+                    <div class="team-card-photo">
+                        <img src="assets/pearl.jpg" alt="Pearl Malutac">
+                    </div>
+                    <h3 class="team-card-name">Pearl Malutac</h3>
+                    <p class="team-card-role">Operations &amp; Venue</p>
+                    <p class="team-card-desc">Transformed Casa Alessandra into the perfect backdrop for an unforgettable night.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Closing Section -->
+        <div class="closing-section">
+            <div class="tropical-overlay"></div>
+            <div class="vignette"></div>
+             <h2 class="closing-title reveal">We can't wait to see you there!</h2>
+            <p class="closing-text reveal">
+              Got questions? You can reach out on Slack to 
+               <span>
+                <a href="https://cxstomer.slack.com/team/U02RNSCP201" target="_blank">Blad</a>, 
+                <a href="https://cxstomer.slack.com/team/U02DJ6H15TN" target="_blank">KM</a>, 
+                <a href="https://cxstomer.slack.com/team/U094ADNJ6P9" target="_blank">HEs</a>, or 
+                <a href="https://cxstomer.slack.com/team/U09KD5DTM6Z" target="_blank">Pearl</a>
+              </span>
+            </p>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p class="footer-text">&#169; 2026 CXSTOMER. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#" onclick="showPage('landing-page'); return false;">Home</a>
+                    <a href="#" onclick="showPage('location-page'); return false;">Locations</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <!-- ============================================
+         VISAYAS PAGE
+         ============================================ -->
+    <div id="visayas-page" class="page regional-page">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="tropical-overlay"></div>
+            <div class="vignette"></div>
+            <nav class="nav-bar">
+                <a href="#" class="nav-logo" onclick="showPage('landing-page'); return false;">CXSTOMER</a>
+                <div class="nav-links">
+                    <a href="#" onclick="showRegionalPage('luzon'); return false;">Manila</a>
+                    <a href="#" onclick="showRegionalPage('visayas'); return false;">Cebu</a>
+                    <a href="#" onclick="showRegionalPage('mindanao'); return false;">CDO</a>
+                    <a href="#" onclick="showRegionalPage('jamaica'); return false;">Jamaica</a>
+                </div>
+            </nav>
+            <div class="info-bar">
+                <div class="info-item"><label>Event Date</label><span>April 25, 2026</span></div>
+                <div class="info-item"><label>Check-in starts</label><span>Coming Soon!</span></div>
+                <div class="info-item"><label>Event begins at</label><span>Coming Soon!</span></div>
+                <div class="info-item"><label>See you there</label><span>Bluewater Maribago Beach Resort</span></div>
+            </div>
+            <div class="hero-content">
+                <p class="hero-subtitle">CXSTOMER 5th Anniversary - Regional Meet</p>
+                <h1 class="hero-title">VISAYAS GATHERING</h1>
+                <p class="hero-description">A warm and inviting evening awaits in the Visayas—bringing together the Cxstomer community for meaningful conversations, shared moments, and a celebration of five years.</p>
+                <a href="#visayas-details" class="btn-gold">View Details</a>
+            </div>
+        </div>
+        
+        <!-- Event Details -->
+        <div id="visayas-details" class="light-section">
+            <div class="container">
+                <div class="section-grid">
+                    <div class="reveal"><h2 class="section-title">Event details</h2></div>
+                    <div class="reveal">
+                        <p class="section-text">This marks the 5th year of Cxstomer—a milestone made meaningful by the people behind it. Join us in Visayas for an intimate gathering designed to bring the community together through conversation, connection, and shared moments.</p>
+                        <p class="section-text">An evening awaits where guests can enjoy a thoughtfully curated dining experience, meaningful exchanges, and a relaxed atmosphere that celebrates how far we've come—together.</p>
+                    </div>
+                </div>
+                    <div class="reveal" style="margin-top: 3rem;">
+                    <a href="https://www.facebook.com/bluewater.maribago" target="_blank">
+                          <img src="visayas.jpg" alt="Bluewater Maribago venue" class="venue-image">
+                    </a>
+                    <p class="image-caption">Bluewater Maribago Beach Resort</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Venue Info & Map -->
+        <div class="venue-info-section">
+            <div class="container">
+                <div class="venue-info-grid">
+                    <div class="reveal">
+                        <h3 class="venue-info-title">Venue Information</h3>
+                        <div class="venue-info-item">
+                            <label>Venue Name</label>
+                            <p>Bluewater Maribago Beach Resort</p>
+                        </div>
+                        <div class="venue-info-item">
+                            <label>Address</label>
+                            <p>Buyong Road, Cebu City, Philippines, 6015</p>
+                        </div>
+                        <div class="venue-info-item">
+                            <label>Contact</label>
+                            <p>Katrina Gonzales and Corlyn Ann Surilla in slack.</p>
+                        </div>
+                    </div>
+                    <div class="reveal">
+                        <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3925.6776770222764!2d123.99773527456932!3d10.28753346802202!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a99734df1c4701%3A0x6fefe4e2aca34ee8!2sBluewater%20Maribago%20Beach%20Resort!5e0!3m2!1sen!2sph!4v1774539046024!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Program Flow -->
+        <div class="light-section">
+            <div class="container">
+                <div class="section-grid">
+                    <div class="reveal"><h2 class="section-title">Program flow</h2></div>
+                    <div class="reveal">
+                        <div class="timeline">
+                              <div class="timeline-date">Coming Soon!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <!-- Outfit Inspiration Section -->
+        <div class="outfit-section">
+            <div class="container">
+                <div class="reveal">
+                    <div class="outfit-header">
+                        <svg class="outfit-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/>
+                        </svg>
+                        <h3 class="outfit-title">Outfit Inspiration</h3>
+                    </div>
+                    <p class="outfit-desc">Need inspiration on what to wear? Check out these outfit ideas perfect for our Luzon celebration!</p>
+                    
+                    <!-- Outfit Accordion -->
+                    <div class="outfit-accordion" id="visayas-outfit">
+                        <div class="outfit-accordion-header" onclick="togglePickup('visayas-outfit')">
+                            <h4>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                                    <path d="M12 2 2 7l10 5 10-5-10-5z"/>
+                                    <path d="m2 17 10 5 10-5"/>
+                                    <path d="m2 12 10 5 10-5"/>
+                                </svg>
+                                Need an inspiration on what to wear? Show me!
+                            </h4>
+                            <span class="outfit-accordion-toggle">&#9660;</span>
+                        </div>
+                        <div class="outfit-accordion-content">
+                            <div class="outfit-grid">
+                                <div class="outfit-item">
+                                    <img src="outfit.png" alt="Women's outfit inspiration for Visayas event">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FAQs -->
+        <div class="light-section">
+            <div class="container">
+                <div class="section-grid">
+                    <div class="reveal"><h2 class="section-title">FAQs</h2></div>
+                    <div class="reveal faq-grid">
+                        <!-- NEW: +1 FAQ -->
+                        <div class="faq-item" style="grid-column: 1 / -1; background: rgba(212, 160, 44, 0.1); padding: 1.5rem; border-left: 3px solid var(--gold);">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                                <h4>Can I bring a +1 or guest to the event?</h4>
+                            </div>
+                            <p class="faq-answer">We've had a few questions about bringing a +1 to the meetups. We completely understand how special it would be to share this with loved ones, and we truly appreciate the enthusiasm around the event.<br><br>This celebration has been planned as a time for our team to connect and bond with one another, so attendance will be limited to employees only.<br><br>Thank you so much for your understanding, and please feel free to reach out to me if you have any questions or concerns.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H5.24a2 2 0 0 0-1.8 1.1l-.8 1.63A6 6 0 0 0 2 12.42V16h2"/>
+                                    <circle cx="6.5" cy="16.5" r="2.5"/>
+                                    <circle cx="16.5" cy="16.5" r="2.5"/>
+                                </svg>
+                                <h4>Is parking available at the venue?</h4>
+                            </div>
+                            <p class="faq-answer">Yes, parking will be available for guests at the venue.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                                <h4>Who can I contact for questions?</h4>
+                            </div>
+                            <p class="faq-answer">For any inquiries, you may reach out to Katrina Gonzales and Corlyn Ann Surilla.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                <h4>How do I get to the venue?</h4>
+                            </div>
+                            <p class="faq-answer">You can find the exact location and directions here:
+ <a href="https://www.google.com/maps/dir//Bluewater+Maribago+Beach+Resort" target="_blank" rel="noopener noreferrer">Click here</a> <br>
+ 
+We recommend checking the route in advance and allowing extra travel time due to Mactan traffic.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/>
+                                    <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/>
+                                    <path d="M18 12h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/>
+                                    <path d="M12 10v2"/>
+                                    <path d="M12 16v2"/>
+                                </svg>
+                                <h4>Will there be room arrangements for overnight stays?</h4>
+                            </div>
+                            <p class="faq-answer">This will not be an overnight event, so any plans to stay overnight will need to be arranged on your own.<br><br>
+
+                            We do have access to discounted room rates at the resort—just reach out to us if you'd like help booking.<br><br>
+                            
+                            For those traveling from Bacolod, Bohol, and Iloilo, complimentary accommodations will be provided since you'll be coming from outside Cebu.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                                <h4>Will there be transportation provided?</h4>
+                            </div>
+                            <p class="faq-answer">Yes, a free van transfer will be available on April 25 going to the event, and on April 25 for the return trip. More details will be shared soon.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                    <path d="M12 17h.01"/>
+                                </svg>
+                                <h4>What if my schedule conflicts with the event?</h4>
+                            </div>
+                            <p class="faq-answer">For concerns regarding schedules, leaves, or PTO, please coordinate with Miss Diana Suarez or your respective Team Leads.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Van Transfer Section -->
+        <div class="van-transfer-section">
+            <div class="container">
+                <div class="reveal">
+                    <div class="van-transfer-header">
+                        <svg class="van-transfer-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="6" width="18" height="12" rx="2"/>
+                            <path d="M6 18v2"/>
+                            <path d="M18 18v2"/>
+                            <circle cx="7" cy="12" r="1"/>
+                            <circle cx="17" cy="12" r="1"/>
+                        </svg>
+                        <h3 class="van-transfer-title">Free Van Transfer</h3>
+                    </div>
+                    <p class="van-transfer-desc">Van Transfer is back and forth. We've arranged convenient pickup points for your convenience.</p>
+                    
+                    <!-- Pickup Points Accordion -->
+                    <div class="pickup-accordion" id="visayas-pickup">
+                        <div class="pickup-header" onclick="togglePickup('visayas-pickup')">
+                            <h4>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                View Pickup Points
+                            </h4>
+                            <span class="pickup-toggle">&#9660;</span>
+                        </div>
+                        <div class="pickup-content">
+                            <div class="pickup-list">
+                                <div class="pickup-item">
+                                    <span class="pickup-number">1</span>
+                                    <div class="pickup-info">
+                                        <h5>Coming Soon!</h5>
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div class="pickup-item">
+                                    <span class="pickup-number">2</span>
+                                    <div class="pickup-info">
+                                        <h5>Coming Soon!</h5>
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div class="pickup-item">
+                                    <span class="pickup-number">3</span>
+                                    <div class="pickup-info">
+                                        <h5>Coming Soon!</h5>
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div class="pickup-item">
+                                    <span class="pickup-number">&#9733;</span>
+                                    <div class="pickup-info">
+                                        <h5>Final Stop: Bluewater Maribago Beach Resort</h5>
+                                        <p>Buyong Road, Cebu City, Philippines, 6015</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="contact-info">
+                        <h5>Contact Information</h5>
+                        <div class="contact-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                            <span>Driver: [Add Driver Contact]</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            <span>Point of Contact: Katrina Gonzales and Corlyn Ann Surilla in Slack.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Closing Section -->
+        <div class="closing-section">
+            <div class="tropical-overlay"></div>
+            <div class="vignette"></div>
+             <h2 class="closing-title reveal">We can't wait to see you there!</h2>
+            <p class="closing-text reveal">
+              Got questions? You can reach out on Slack to 
+               <span> 
+                <a href="https://cxstomer.slack.com/team/U02DJ6H15TN" target="_blank">KM</a>
+              </span>
+            </p>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p class="footer-text">&#169; 2026 CXSTOMER. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#" onclick="showPage('landing-page'); return false;">Home</a>
+                    <a href="#" onclick="showPage('location-page'); return false;">Locations</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ============================================
+         MINDANAO PAGE
+         ============================================ -->
+    <div id="mindanao-page" class="page regional-page">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="tropical-overlay"></div>
+            <div class="vignette"></div>
+            <nav class="nav-bar">
+                <a href="#" class="nav-logo" onclick="showPage('landing-page'); return false;">CXSTOMER</a>
+                <div class="nav-links">
+                    <a href="#" onclick="showRegionalPage('luzon'); return false;">Manila</a>
+                    <a href="#" onclick="showRegionalPage('visayas'); return false;">Cebu</a>
+                    <a href="#" onclick="showRegionalPage('mindanao'); return false;">CDO</a>
+                    <a href="#" onclick="showRegionalPage('jamaica'); return false;">Jamaica</a>
+                </div>
+            </nav>
+            <div class="info-bar">
+                <div class="info-item"><label>Event Date</label><span>May 2, 2026</span></div>
+                <div class="info-item"><label>Check-in starts</label><span>2:00 PM</span></div>
+                <div class="info-item"><label>Event begins at</label><span>3:00 PM</span></div>
+                <div class="info-item"><label>See you there</label><span>Tubajon Cliff Private Resort</span></div>
+            </div>
+            <div class="hero-content">
+                <p class="hero-subtitle">CXSTOMER 5th Anniversary - Regional Meet</p>
+                <h1 class="hero-title">MINDANAO MEETUP</h1>
+                <p class="hero-description">Join us in Mindanao for a casual yet meaningful evening filled with good company, authentic conversations, and a celebration of the people who made Cxstomer's 5th year possible.</p>
+                <a href="#mindanao-details" class="btn-gold">View Details</a>
+            </div>
+        </div>
+        
+        <!-- Event Details -->
+        <div id="mindanao-details" class="light-section">
+            <div class="container">
+                <div class="section-grid">
+                    <div class="reveal"><h2 class="section-title">Event details</h2></div>
+                    <div class="reveal">
+                        <p class="section-text">This marks the 5th year of Cxstomer—a milestone made meaningful by the people behind it. Join us in Mindanao for an intimate gathering designed to bring the community together through conversation, connection, and shared moments.</p>
+                        <p class="section-text">An evening awaits where guests can enjoy a thoughtfully curated dining experience, meaningful exchanges, and a relaxed atmosphere that celebrates how far we've come—together.</p>
+                    </div>
+                </div>
+                <div class="reveal" style="margin-top: 3rem;">
+                    <a href="https://www.facebook.com/profile.php?id=100085602853267&amp;sk=photos" target="_blank">
+                          <img src="CDO.jpg" alt="Tubajon Cliff venue" class="venue-image">
+                    </a>
+                    <p class="image-caption">Tubajon Cliff Private Resort</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Venue Info & Map -->
+        <div class="venue-info-section">
+            <div class="container">
+                <div class="venue-info-grid">
+                    <div class="reveal">
+                        <h3 class="venue-info-title">Venue Information</h3>
+                        <div class="venue-info-item">
+                            <label>Venue Name</label>
+                            <p>Tubajon Cliff Private Resort</p>
+                        </div>
+                        <div class="venue-info-item">
+                            <label>Address</label>
+                            <p>Zone 2, Tubajon, Laguindingan, 9000 Misamis Oriental</p>
+                        </div>
+                        <div class="venue-info-item">
+                            <label>Contact</label>
+                            <p>Reach out to Ricky, KM, or Tophy on Slack, or drop a message in our group chats.</p>
+                        </div>
+                    </div>
+                    <div class="reveal">
+                        <div class="map-container">
+                           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.707751000275!2d124.45758087501412!3d8.624030291422015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32555954b8735633%3A0x114e9de434ad143b!2sTubajon%20Cliff%20Private%20Resort!5e0!3m2!1sen!2sph!4v1774534876303!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Program Flow -->
+        <div class="light-section">
+            <div class="container">
+                <div class="section-grid">
+                    <div class="reveal"><h2 class="section-title">Program flow</h2></div>
+                    <div class="reveal">
+                        <div class="timeline">
+              <div class="timeline-date">May 02, 2026</div>
+          
+                  <div class="timeline-item">
+                    <span class="timeline-time">12:00 PM</span>
+                    <div class="timeline-line"></div>
+                    <span class="timeline-activity">Call time at start point (CDO)</span>
+                  </div>
+                
+                  <div class="timeline-item">
+                    <span class="timeline-time">2:00 PM</span>
+                    <div class="timeline-line"></div>
+                    <span class="timeline-activity">Check-in</span>
+                  </div>
+                
+                  <div class="timeline-item">
+                    <span class="timeline-time">3:00 PM</span>
+                    <div class="timeline-line"></div>
+                    <span class="timeline-activity">Meet &amp; Greet</span>
+                  </div>
+                
+                  <div class="timeline-item">
+                    <span class="timeline-time">4:00 PM</span>
+                    <div class="timeline-line"></div>
+                    <span class="timeline-activity">Settle in &amp; Rest</span>
+                  </div>
+                
+                  <div class="timeline-item">
+                    <span class="timeline-time">6:00 PM</span>
+                    <div class="timeline-line"></div>
+                    <span class="timeline-activity">Dinner</span>
+                  </div>
+                
+                  <div class="timeline-item">
+                    <span class="timeline-time">8:00 PM</span>
+                    <div class="timeline-line"></div>
+                    <span class="timeline-activity">Program Start, Games, &amp; Awards</span>
+                  </div>
+                
+                  <div class="timeline-item">
+                    <span class="timeline-time">10:00 PM</span>
+                    <div class="timeline-line"></div>
+                    <span class="timeline-activity">Rest</span>
+                  </div>
+                </div>
+                
+                <div class="timeline">
+                  <div class="timeline-date">May 03, 2026</div>
+                
+                  <div class="timeline-item">
+                    <span class="timeline-time">7:00 AM</span>
+                    <div class="timeline-line"></div>
+                    <span class="timeline-activity">Breakfast</span>
+                  </div>
+                
+                  <div class="timeline-item">
+                    <span class="timeline-time">8:00 AM</span>
+                    <div class="timeline-line"></div>
+                    <span class="timeline-activity">Free time &amp; Picture Taking</span>
+                  </div>
+                
+                  <div class="timeline-item">
+                    <span class="timeline-time">11:00 AM</span>
+                    <div class="timeline-line"></div>
+                    <span class="timeline-activity">Venue Check-out</span>
+                  </div>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <!-- Outfit Inspiration Section -->
+        <div class="outfit-section">
+            <div class="container">
+                <div class="reveal">
+                    <div class="outfit-header">
+                        <svg class="outfit-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/>
+                        </svg>
+                        <h3 class="outfit-title">Outfit Inspiration</h3>
+                    </div>
+                    <p class="outfit-desc">Need inspiration on what to wear? Check out these outfit ideas perfect for our Luzon celebration!</p>
+                    
+                    <!-- Outfit Accordion -->
+                    <div class="outfit-accordion" id="mindanao-outfit">
+                        <div class="outfit-accordion-header" onclick="togglePickup('mindanao-outfit')">
+                            <h4>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                                    <path d="M12 2 2 7l10 5 10-5-10-5z"/>
+                                    <path d="m2 17 10 5 10-5"/>
+                                    <path d="m2 12 10 5 10-5"/>
+                                </svg>
+                                Need an inspiration on what to wear? Show me!
+                            </h4>
+                            <span class="outfit-accordion-toggle">&#9660;</span>
+                        </div>
+                        <div class="outfit-accordion-content">
+                            <div class="outfit-grid">
+                                <div class="outfit-item">
+                                    <img src="outfit.png" alt="Women's outfit inspiration for Mindanao event">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FAQs -->
+        <div class="light-section">
+            <div class="container">
+                <div class="section-grid">
+                    <div class="reveal"><h2 class="section-title">FAQs</h2></div>
+                    <div class="reveal faq-grid">
+                        <!-- NEW: +1 FAQ -->
+                        <div class="faq-item" style="grid-column: 1 / -1; background: rgba(212, 160, 44, 0.1); padding: 1.5rem; border-left: 3px solid var(--gold);">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                                <h4>Can I bring a +1 or guest to the event?</h4>
+                            </div>
+                            <p class="faq-answer">We've had a few questions about bringing a +1 to the meetups. We completely understand how special it would be to share this with loved ones, and we truly appreciate the enthusiasm around the event.<br><br>This celebration has been planned as a time for our team to connect and bond with one another, so attendance will be limited to employees only.<br><br>Thank you so much for your understanding, and please feel free to reach out to me if you have any questions or concerns.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H5.24a2 2 0 0 0-1.8 1.1l-.8 1.63A6 6 0 0 0 2 12.42V16h2"/>
+                                    <circle cx="6.5" cy="16.5" r="2.5"/>
+                                    <circle cx="16.5" cy="16.5" r="2.5"/>
+                                </svg>
+                                <h4>Is parking available at the venue?</h4>
+                            </div>
+                            <p class="faq-answer">Yes! Guests can park onsite.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                                <h4>Who can I contact for questions?</h4>
+                            </div>
+                            <p class="faq-answer">Reach out to Ricky, KM, or Tophy on Slack, or drop a message in our group chats.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                <h4>How do I get to the venue?</h4>
+                            </div>
+                            <p class="faq-answer"> <a href="https://www.google.com/maps/dir/15.6191219" target="_blank" rel="noopener noreferrer">Click here</a> for directions to Tubajon Cliff Private Resort<br>
+ 
+                            We recommend checking your route ahead of time and leaving extra travel time on the event day.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/>
+                                    <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/>
+                                    <path d="M18 12h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/>
+                                    <path d="M12 10v2"/>
+                                    <path d="M12 16v2"/>
+                                </svg>
+                                <h4>Will there be room arrangements for overnight stays?</h4>
+                            </div>
+                            <p class="faq-answer">Yes, room and bed assignments will be provided upon arrival.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                                <h4>Will there be transportation provided?</h4>
+                            </div>
+                            <p class="faq-answer">Yes! A free vehicle will pick up attendees at Gaisano, CDO. Meet-up is at 12:00 PM, and departure is 1:00 PM on May 2, 2026.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                    <path d="M12 17h.01"/>
+                                </svg>
+                                <h4>What if my schedule conflicts with the event?</h4>
+                            </div>
+                            <p class="faq-answer">If you have scheduling issues, leave requests, or PTO concerns, coordinate with Miss Diana Suarez or your Team Lead.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Van Transfer Section -->
+        <div class="van-transfer-section">
+            <div class="container">
+                <div class="reveal">
+                    <div class="van-transfer-header">
+                        <svg class="van-transfer-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="6" width="18" height="12" rx="2"/>
+                            <path d="M6 18v2"/>
+                            <path d="M18 18v2"/>
+                            <circle cx="7" cy="12" r="1"/>
+                            <circle cx="17" cy="12" r="1"/>
+                        </svg>
+                        <h3 class="van-transfer-title">Free Van Transfer</h3>
+                    </div>
+                    <p class="van-transfer-desc">Van Transfer is back and forth. We've arranged convenient pickup points for your convenience.</p>
+                    
+                    <!-- Pickup Points Accordion -->
+                    <div class="pickup-accordion" id="mindanao-pickup">
+                        <div class="pickup-header" onclick="togglePickup('mindanao-pickup')">
+                            <h4>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                View Pickup Points
+                            </h4>
+                            <span class="pickup-toggle">&#9660;</span>
+                        </div>
+                        <div class="pickup-content">
+                            <div class="pickup-list">
+                                <div class="pickup-item">
+                                    <span class="pickup-number">1</span>
+                                    <div class="pickup-info">
+                                        <h5>Gaisano, CDO.</h5>
+                                        <p>Meet-up is at 12:00 PM, and departure is 1:00 PM on May 2, 2026.</p>
+                                    </div>
+                                </div>
+                            
+                                <div class="pickup-item">
+                                    <span class="pickup-number">&#9733;</span>
+                                    <div class="pickup-info">
+                                        <h5>Final Stop: Tubajon Cliff Private Resort</h5>
+                                        <p>Zone 2, Tubajon, Laguindingan, 9000 Misamis Oriental</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="contact-info">
+                        <h5>Contact Information</h5>
+                        <div class="contact-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            <span>Point of Contact: Reach out to Ricky, KM, or Tophy on Slack, or drop a message in our group chats.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Closing Section -->
+        <div class="closing-section">
+            <div class="tropical-overlay"></div>
+            <div class="vignette"></div>
+            <h2 class="closing-title reveal">We can't wait to see you there!</h2>
+            <p class="closing-text reveal">
+              Got questions? You can reach out on Slack to 
+               <span> 
+                <a href="https://cxstomer.slack.com/team/U02DJ6H15TN" target="_blank">KM</a>
+              </span>
+            </p>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p class="footer-text">&#169; 2026 CXSTOMER. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#" onclick="showPage('landing-page'); return false;">Home</a>
+                    <a href="#" onclick="showPage('location-page'); return false;">Locations</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+     <!-- ============================================
+         JAMAICA PAGE
+         ============================================ -->
+    <div id="jamaica-page" class="page regional-page">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="tropical-overlay"></div>
+            <div class="vignette"></div>
+            <nav class="nav-bar">
+                <a href="#" class="nav-logo" onclick="showPage('landing-page'); return false;">CXSTOMER</a>
+                <div class="nav-links">
+                    <a href="#" onclick="showRegionalPage('luzon'); return false;">Manila</a>
+                    <a href="#" onclick="showRegionalPage('visayas'); return false;">Cebu</a>
+                    <a href="#" onclick="showRegionalPage('mindanao'); return false;">CDO</a>
+                    <a href="#" onclick="showRegionalPage('jamaica'); return false;">Jamaica</a>
+                </div>
+            </nav>
+            <div class="info-bar">
+                <div class="info-item"><label>Event Date</label><span>April 25, 2026</span></div>
+                <div class="info-item"><label>Event begins at</label><span>11:00 AM</span></div>
+                <div class="info-item"><label>See you there</label><span>Sand and Tan Beach Hotel</span></div>
+            </div>
+            <div class="hero-content">
+                <p class="hero-subtitle">CXSTOMER 5th Anniversary - Regional Meet</p>
+                <h1 class="hero-title">JAMAICA CONNECT</h1>
+                <p class="hero-description">Join us in Jamaica for a meaningful and engaging experience as we bring the Cxstomer team together—an opportunity to connect in person, strengthen relationships, and share moments with the people you've worked alongside as we celebrate our 5th anniversary.</p>
+                <a href="#jamaica-details" class="btn-gold">View Details</a>
+            </div>
+        </div>
+        
+        <!-- Event Details -->
+        <div id="jamaica-details" class="light-section">
+            <div class="container">
+                <div class="section-grid">
+                    <div class="reveal"><h2 class="section-title">Event details</h2></div>
+                    <div class="reveal">
+                        <p class="section-text">In celebration of Cxstomer's 5th anniversary, we're bringing the team together in Jamaica for a special and memorable experience. This gathering is all about reconnecting, building stronger bonds, and enjoying time together in a vibrant setting.
+</p>
+                        <p class="section-text">Expect a mix of team activities, shared moments, and opportunities to engage with colleagues in a more personal and meaningful way.</p>
+                    </div>
+                </div>
+                <div class="reveal" style="margin-top: 3rem;">
+                    <a href="https://sandandtanhotel.com/" target="_blank">
+                          <img src="jamica1.jpg" alt="Sand and Tan Beach Hotel venue" class="venue-image">
+                    </a>
+                    <p class="image-caption">Sand and Tan Beach Hotel</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Venue Info & Map -->
+        <div class="venue-info-section">
+            <div class="container">
+                <div class="venue-info-grid">
+                    <div class="reveal">
+                        <h3 class="venue-info-title">Venue Information</h3>
+                        <div class="venue-info-item">
+                            <label>Venue Name</label>
+                            <p>Sand and Tan Beach Hotel</p>
+                        </div>
+                        <div class="venue-info-item">
+                            <label>Address</label>
+                            <p>Old Road, 5 White River, Ocho Rios</p>
+                        </div>
+                        <div class="venue-info-item">
+                            <label>Contact</label>
+                            <p>8769744613</p>
+                        </div>
+                    </div>
+                    <div class="reveal">
+                        <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5239.591010812111!2d-77.0727441!3d18.4147642!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8edafde4af352447%3A0xe317874f88698180!2sSand%20and%20Tan%20Beach%20Hotel!5e1!3m2!1sen!2sph!4v1774696724917!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Van Transfer Section -->
+        <div class="van-transfer-section">
+            <div class="container">
+                <div class="reveal">
+                    <div class="van-transfer-header">
+                        <svg class="van-transfer-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="6" width="18" height="12" rx="2"/>
+                            <path d="M6 18v2"/>
+                            <path d="M18 18v2"/>
+                            <circle cx="7" cy="12" r="1"/>
+                            <circle cx="17" cy="12" r="1"/>
+                        </svg>
+                        <h3 class="van-transfer-title">Meet Up Point</h3>
+                    </div>
+                    <p class="van-transfer-desc">Turtle River Park Ocho Rios.</p>
+                    
+                    <!-- Pickup Points Accordion -->
+                    <div class="pickup-accordion" id="jamaica-pickup">
+                        <div class="pickup-header" onclick="togglePickup('jamaica-pickup')">
+                            <h4>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                View Meet-Up Point
+                            </h4>
+                            <span class="pickup-toggle">&#9660;</span>
+                        </div>
+                        <div class="pickup-content">
+                            <div class="pickup-list">
+                                <div class="pickup-item">
+                                    <span class="pickup-number">1</span>
+                                    <div class="pickup-info">
+                                        <h5>Turtle River Park Ocho Rios.</h5>
+                                        <p>Meet-up at Turtle River Park Ocho Rios.</p>
+                                    </div>
+                                </div>
+                            
+                                <div class="pickup-item">
+                                    <span class="pickup-number">&#9733;</span>
+                                    <div class="pickup-info">
+                                        <h5>Final Stop: Sand and Tan Beach Hotel</h5>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="contact-info">
+                        <h5>Contact Information</h5>
+                        <div class="contact-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                             <span>Point of Contact: Reach out to KM on Slack, or drop a message in our group chats.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Closing Section -->
+        <div class="closing-section">
+            <div class="tropical-overlay"></div>
+            <div class="vignette"></div>
+            <h2 class="closing-title reveal">We can't wait to see you there!</h2>
+            <p class="closing-text reveal">
+              Got questions? You can reach out on Slack to 
+               <span> 
+                <a href="https://cxstomer.slack.com/team/U02DJ6H15TN" target="_blank">KM</a>
+              </span>
+            </p>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p class="footer-text">&#169; 2026 CXSTOMER. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#" onclick="showPage('landing-page'); return false;">Home</a>
+                    <a href="#" onclick="showPage('location-page'); return false;">Locations</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // ============================================
+        // EXISTING: Page Navigation
+        // ============================================
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0);
+            // Re-init scroll reveal for new page
+            setTimeout(initScrollReveal, 100);
+        }
+
+        function showRegionalPage(region) {
+            showPage(region + '-page');
+        }
+
+        // ============================================
+        // EXISTING: Accordion Toggle
+        // ============================================
+        function togglePickup(accordionId) {
+            const accordion = document.getElementById(accordionId);
+            accordion.classList.toggle('active');
+        }
+
+        // ============================================
+        // EXISTING: Scroll Reveal Animation
+        // ============================================
+        function initScrollReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOnScroll = () => {
+                reveals.forEach(element => {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = element.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - 100) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll();
+        }
+
+        document.addEventListener('DOMContentLoaded', initScrollReveal);
+
+        // ============================================
+        // EXISTING: Smooth Scroll for Anchor Links
+        // ============================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ============================================
+        // NEW: Scroll Progress Bar
+        // ============================================
+        function updateScrollProgress() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            document.getElementById('scrollProgress').style.width = progress + '%';
+        }
+        window.addEventListener('scroll', updateScrollProgress);
+
+        // ============================================
+        // NEW: Custom Cursor
+        // ============================================
+        const cursor = document.getElementById('customCursor');
+        let cursorX = 0, cursorY = 0, currentX = 0, currentY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            cursorX = e.clientX;
+            cursorY = e.clientY;
+        });
+
+        function animateCursor() {
+            currentX += (cursorX - currentX) * 0.15;
+            currentY += (cursorY - currentY) * 0.15;
+            cursor.style.left = currentX + 'px';
+            cursor.style.top = currentY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Cursor hover effect on interactive elements
+        document.querySelectorAll('a, button, .gallery-item, .team-card, .video-play-overlay').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // ============================================
+        // NEW: Confetti Effect
+        // ============================================
+        const confettiCanvas = document.getElementById('confetti-canvas');
+        const confettiCtx = confettiCanvas.getContext('2d');
+        confettiCanvas.width = window.innerWidth;
+        confettiCanvas.height = window.innerHeight;
+
+        const confettiColors = ['#D4A02C', '#F3EFE6', '#0B3A2E', '#c8a45c', '#ffffff', '#e8c76a'];
+        const confettiPieces = [];
+        const CONFETTI_COUNT = 150;
+
+        class ConfettiPiece {
+            constructor() {
+                this.reset();
+                this.y = Math.random() * -confettiCanvas.height; // Start above screen
+            }
+            reset() {
+                this.x = Math.random() * confettiCanvas.width;
+                this.y = -20;
+                this.size = Math.random() * 8 + 4;
+                this.color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+                this.speedY = Math.random() * 3 + 1.5;
+                this.speedX = Math.random() * 2 - 1;
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = Math.random() * 6 - 3;
+                this.opacity = 1;
+                this.shape = Math.random() > 0.5 ? 'rect' : 'circle';
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX + Math.sin(this.y * 0.01) * 0.5;
+                this.rotation += this.rotationSpeed;
+                if (this.y > confettiCanvas.height + 20) {
+                    this.opacity -= 0.02;
+                    if (this.opacity <= 0) this.reset();
+                }
+            }
+            draw() {
+                confettiCtx.save();
+                confettiCtx.translate(this.x, this.y);
+                confettiCtx.rotate(this.rotation * Math.PI / 180);
+                confettiCtx.globalAlpha = this.opacity;
+                confettiCtx.fillStyle = this.color;
+                if (this.shape === 'rect') {
+                    confettiCtx.fillRect(-this.size / 2, -this.size / 4, this.size, this.size / 2);
+                } else {
+                    confettiCtx.beginPath();
+                    confettiCtx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
+                    confettiCtx.fill();
+                }
+                confettiCtx.restore();
+            }
+        }
+
+        for (let i = 0; i < CONFETTI_COUNT; i++) {
+            confettiPieces.push(new ConfettiPiece());
+        }
+
+        let confettiActive = true;
+        let confettiFrameCount = 0;
+
+        function animateConfetti() {
+            if (!confettiActive) return;
+            confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+            confettiPieces.forEach(p => { p.update(); p.draw(); });
+            confettiFrameCount++;
+            // Stop after ~5 seconds on mobile, keep going on desktop
+            if (confettiFrameCount > 300 && window.innerWidth < 768) {
+                confettiActive = false;
+                confettiCanvas.style.display = 'none';
+                return;
+            }
+            requestAnimationFrame(animateConfetti);
+        }
+
+        window.addEventListener('resize', () => {
+            confettiCanvas.width = window.innerWidth;
+            confettiCanvas.height = window.innerHeight;
+        });
+
+        // Start confetti when Luzon page is shown
+        const originalShowPage = showPage;
+        showPage = function(pageId) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0);
+            setTimeout(initScrollReveal, 100);
+            // Restart confetti for luzon page
+            if (pageId === 'luzon-page') {
+                confettiActive = true;
+                confettiFrameCount = 0;
+                confettiCanvas.style.display = 'block';
+                animateConfetti();
+            } else {
+                confettiActive = false;
+                confettiCanvas.style.display = 'none';
+            }
+        };
+
+        // Also override showRegionalPage
+        showRegionalPage = function(region) {
+            showPage(region + '-page');
+        };
+
+        // Start confetti on initial load if luzon is active
+        if (document.getElementById('luzon-page').classList.contains('active')) {
+            animateConfetti();
+        }
+
+        // ============================================
+        // NEW: Floating Particles Background
+        // ============================================
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = particle.style.height = (Math.random() * 4 + 2) + 'px';
+                particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                particle.style.animationDelay = (Math.random() * 10) + 's';
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // ============================================
+        // NEW: Photo Gallery System
+        // ============================================
+        const GALLERY_BATCH_SIZE = 24;
+        let galleryLoaded = 0;
+        let currentFilter = 'all';
+        let lightboxIndex = 0;
+        let allGalleryItems = [];
+
+        // Generate gallery data (using user's photos + placeholders)
+        // In production, replace this with actual 285 photo paths
+        const userPhotos = [
+            { src: 'assets/event-1.jpg', category: 'venue', caption: 'Welcome to the Luzon Takeover' },
+            { src: 'assets/event-2.jpg', category: 'venue', caption: 'The Cxstomer banner at Casa Alessandra' },
+            { src: 'assets/event-3.jpg', category: 'food', caption: 'Beautifully curated dinner spread' },
+            { src: 'assets/event-4.jpg', category: 'venue', caption: 'Poolside venue setup' },
+            { src: 'assets/event-5.jpg', category: 'moments', caption: 'Welcome sign and decorations' },
+            { src: 'assets/event-6.jpg', category: 'venue', caption: 'Elegant cocktail tables' },
+            { src: 'assets/gallery-1.jpg', category: 'venue', caption: 'Evening poolside ambiance' },
+            { src: 'assets/gallery-2.jpg', category: 'people', caption: 'Team celebration' },
+            { src: 'assets/gallery-3.jpg', category: 'food', caption: 'Table settings and decor' },
+            { src: 'assets/gallery-4.jpg', category: 'venue', caption: 'Casa Alessandra at sunset' },
+        ];
+
+        // Generate placeholder entries for 285 photos
+        const categories = ['venue', 'moments', 'people', 'food'];
+        const captions = {
+            venue: ['Pool area', 'Casa Alessandra exterior', 'Event setup', 'String lights', 'Garden walkway', 'Lounge area', 'Stage setup', 'Decor details'],
+            moments: ['Candid laughter', 'Toast moment', 'Group selfie', 'Dancing', 'Speech', 'Award ceremony', 'Games', 'Surprise moment'],
+            people: ['Team photo', 'New friends', 'Candid shot', 'Group picture', 'Smiling faces', 'Celebration', 'Together'],
+            food: ['Appetizers', 'Main course', 'Desserts', 'Cocktails', 'Buffet setup', 'Beautiful plating', 'Refreshments']
+        };
+
+        // Build the full 285-item gallery
+        for (let i = 0; i < 285; i++) {
+            if (i < userPhotos.length) {
+                allGalleryItems.push(userPhotos[i]);
+            } else {
+                const cat = categories[i % categories.length];
+                const capList = captions[cat];
+                const cap = capList[i % capList.length] + ' #' + (Math.floor(i / capList.length) + 1);
+                // Cycle through available images as placeholders
+                const placeholderSrc = userPhotos[i % userPhotos.length].src;
+                allGalleryItems.push({ src: placeholderSrc, category: cat, caption: cap });
+            }
+        }
+
+        function renderGalleryItems(filter, append = false) {
+            const grid = document.getElementById('galleryGrid');
+            if (!append) {
+                grid.innerHTML = '';
+                galleryLoaded = 0;
+            }
+
+            const filtered = filter === 'all' ? allGalleryItems : allGalleryItems.filter(item => item.category === filter);
+            const toShow = filtered.slice(galleryLoaded, galleryLoaded + GALLERY_BATCH_SIZE);
+
+            toShow.forEach((item, idx) => {
+                const globalIdx = allGalleryItems.indexOf(item);
+                const div = document.createElement('div');
+                div.className = 'gallery-item';
+                // Add size variations for masonry effect
+                const rand = Math.random();
+                if (rand > 0.7) div.classList.add('tall');
+                else if (rand > 0.85) div.classList.add('wide');
+
+                div.innerHTML = `
+                    <img src="${item.src}" alt="${item.caption}" loading="lazy" onload="this.parentElement.classList.add('visible')">
+                    <div class="gallery-item-overlay">
+                        <div>
+                            <div class="gallery-item-category">${item.category}</div>
+                            <div class="gallery-item-caption">${item.caption}</div>
+                        </div>
+                    </div>
+                `;
+                div.onclick = () => openLightbox(globalIdx);
+                grid.appendChild(div);
+
+                // Stagger animation
+                setTimeout(() => div.classList.add('visible'), idx * 50);
+            });
+
+            galleryLoaded += toShow.length;
+
+            // Update counter
+            document.getElementById('showingCount').textContent = Math.min(galleryLoaded, filtered.length);
+
+            // Show/hide load more button
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            if (galleryLoaded >= filtered.length) {
+                loadMoreBtn.style.display = 'none';
+            } else {
+                loadMoreBtn.style.display = 'inline-block';
+            }
+        }
+
+        function filterGallery(filter) {
+            currentFilter = filter;
+            // Update active button
+            document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.filter === filter);
+            });
+            renderGalleryItems(filter, false);
+        }
+
+        function loadMorePhotos() {
+            renderGalleryItems(currentFilter, true);
+        }
+
+        // Initialize gallery
+        document.addEventListener('DOMContentLoaded', () => {
+            renderGalleryItems('all', false);
+        });
+
+        // ============================================
+        // NEW: Lightbox
+        // ============================================
+        function openLightbox(index) {
+            lightboxIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightboxImg');
+            const item = allGalleryItems[index];
+            img.src = item.src;
+            img.alt = item.caption;
+            updateLightboxCounter();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function navigateLightbox(direction) {
+            const filtered = currentFilter === 'all' ? allGalleryItems : allGalleryItems.filter(item => item.category === currentFilter);
+            // Find current position in filtered list
+            let currentFilteredIdx = filtered.indexOf(allGalleryItems[lightboxIndex]);
+            currentFilteredIdx += direction;
+            if (currentFilteredIdx < 0) currentFilteredIdx = filtered.length - 1;
+            if (currentFilteredIdx >= filtered.length) currentFilteredIdx = 0;
+            lightboxIndex = allGalleryItems.indexOf(filtered[currentFilteredIdx]);
+
+            const img = document.getElementById('lightboxImg');
+            img.style.opacity = '0';
+            setTimeout(() => {
+                img.src = allGalleryItems[lightboxIndex].src;
+                img.alt = allGalleryItems[lightboxIndex].caption;
+                img.style.opacity = '1';
+                updateLightboxCounter();
+            }, 200);
+        }
+
+        function updateLightboxCounter() {
+            document.getElementById('lightboxCounter').textContent = (lightboxIndex + 1) + ' / 285';
+        }
+
+        // Lightbox keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const lightbox = document.getElementById('lightbox');
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            if (e.key === 'ArrowRight') navigateLightbox(1);
+        });
+
+        // Lightbox swipe for mobile
+        let lightboxTouchStartX = 0;
+        document.getElementById('lightbox').addEventListener('touchstart', (e) => {
+            lightboxTouchStartX = e.changedTouches[0].screenX;
+        });
+        document.getElementById('lightbox').addEventListener('touchend', (e) => {
+            const diff = e.changedTouches[0].screenX - lightboxTouchStartX;
+            if (Math.abs(diff) > 50) {
+                navigateLightbox(diff > 0 ? -1 : 1);
+            }
+        });
+
+        // ============================================
+        // NEW: Video Player
+        // ============================================
+        function playVideo() {
+            const video = document.getElementById('eventVideo');
+            const overlay = document.getElementById('videoOverlay');
+            video.play();
+            overlay.classList.add('hidden');
+        }
+
+        document.getElementById('eventVideo').addEventListener('pause', () => {
+            document.getElementById('videoOverlay').classList.remove('hidden');
+        });
+
+        document.getElementById('eventVideo').addEventListener('ended', () => {
+            document.getElementById('videoOverlay').classList.remove('hidden');
+        });
+
+        // ============================================
+        // NEW: Counter Animation for Stats
+        // ============================================
+        function animateCounters() {
+            const counters = document.querySelectorAll('.banner-stat-number');
+            counters.forEach(counter => {
+                const target = parseInt(counter.dataset.count);
+                const duration = 2000;
+                const start = performance.now();
+
+                function updateCounter(now) {
+                    const elapsed = now - start;
+                    const progress = Math.min(elapsed / duration, 1);
+                    // Ease out cubic
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    counter.textContent = Math.floor(eased * target);
+                    if (progress < 1) requestAnimationFrame(updateCounter);
+                }
+                requestAnimationFrame(updateCounter);
+            });
+        }
+
+        // Trigger counter animation when banner is visible
+        let countersTriggered = false;
+        function checkCounterTrigger() {
+            if (countersTriggered) return;
+            const banner = document.getElementById('recap-banner');
+            if (!banner) return;
+            const rect = banner.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 100) {
+                countersTriggered = true;
+                animateCounters();
+            }
+        }
+        window.addEventListener('scroll', checkCounterTrigger);
+
+        // ============================================
+        // NEW: Team Card Reveal with Stagger
+        // ============================================
+        function initTeamReveal() {
+            const teamCards = document.querySelectorAll('.team-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            teamCards.forEach(card => observer.observe(card));
+        }
+        document.addEventListener('DOMContentLoaded', initTeamReveal);
+
+        // ============================================
+        // NEW: Sandy Portrait 3D Tilt Effect
+        // ============================================
+        const sandyPortrait = document.getElementById('sandyPortrait');
+        if (sandyPortrait) {
+            sandyPortrait.addEventListener('mousemove', (e) => {
+                const rect = sandyPortrait.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+                sandyPortrait.style.transform = `rotateY(${x * 10}deg) rotateX(${-y * 10}deg)`;
+            });
+            sandyPortrait.addEventListener('mouseleave', () => {
+                sandyPortrait.style.transform = 'rotateY(0deg) rotateX(0deg)';
+            });
+        }
+
+        // ============================================
+        // NEW: Parallax Effect on Hero
+        // ============================================
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const heroTitle = document.querySelector('.hero-title');
+            const heroSubtitle = document.querySelector('.hero-subtitle');
+            const heroDesc = document.querySelector('.hero-description');
+            if (heroTitle && scrolled < window.innerHeight) {
+                heroTitle.style.transform = `translateY(${scrolled * 0.3}px)`;
+                heroSubtitle.style.transform = `translateY(${scrolled * 0.2}px)`;
+                heroDesc.style.transform = `translateY(${scrolled * 0.15}px)`;
+                heroTitle.style.opacity = 1 - (scrolled / (window.innerHeight * 0.6));
+            }
+        });
+
+        // ============================================
+        // Gallery item click handlers with cursor
+        // ============================================
+        document.addEventListener('click', (e) => {
+            const galleryItem = e.target.closest('.gallery-item');
+            if (galleryItem) {
+                const index = Array.from(document.querySelectorAll('.gallery-item')).indexOf(galleryItem);
+                // Calculate global index based on current filter
+                const filtered = currentFilter === 'all' ? allGalleryItems : allGalleryItems.filter(item => item.category === currentFilter);
+                if (filtered[index]) {
+                    openLightbox(allGalleryItems.indexOf(filtered[index]));
+                }
+            }
+        });
+
+        // Re-attach cursor listeners after gallery updates
+        const galleryObserver = new MutationObserver(() => {
+            document.querySelectorAll('.gallery-item').forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            });
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('galleryGrid');
+            if (grid) galleryObserver.observe(grid, { childList: true });
+        });
+    </script>
+</body>
+</html>
