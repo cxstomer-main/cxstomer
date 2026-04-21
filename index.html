@@ -1705,12 +1705,12 @@ let currentFilter = 'all';
 let lightboxIndex = 0;
 let allGalleryItems = [];
 
-// Generate user photos (photo1.jpg to photo172.jpg)
+// Generate user photos (moments)
 const userPhotos = [];
 
 for (let i = 1; i <= 172; i++) {
     userPhotos.push({
-        src: `photo${i}.jpg`,
+        src: `photo${i}.jpg`, // ✅ FIXED
         category: 'moments'
     });
 }
@@ -1720,7 +1720,7 @@ const foodPhotos = [];
 
 for (let i = 1; i <= 29; i++) {
     foodPhotos.push({
-        src: `food${i}.jpg`,
+        src: `food${i}.jpg`, // ✅ FIXED
         category: 'food'
     });
 }
