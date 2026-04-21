@@ -393,6 +393,23 @@
         </div>
     </div>
 
+    <!-- LOCATION SELECTOR PAGE -->
+    <div id="location-page" class="page">
+        <div class="location-page">
+            <div class="tropical-overlay"></div>
+            <div class="vignette"></div>
+            <a href="#" class="back-link" onclick="showPage('landing-page'); return false;">&#8592; Back</a>
+            <p class="location-label">Choose Your Location</p>
+            <div class="location-cards">
+                <div class="location-card" onclick="showRegionalPage('luzon')"><h3>Manila</h3><p>April 18</p></div>
+                <div class="location-card" onclick="showRegionalPage('visayas')"><h3>Cebu</h3><p>April 25</p></div>
+                <div class="location-card" onclick="showRegionalPage('mindanao')"><h3>CDO</h3><p>May 2</p></div>
+                <div class="location-card" onclick="showRegionalPage('jamaica')"><h3>Jamaica</h3><p>April 25</p></div>
+            </div>
+            <p class="location-helper">Select a region to view schedule &amp; venue.</p>
+        </div>
+    </div>
+
     <!-- ============================================
          LUZON PAGE - ENHANCED WITH RECAP FEATURES
          ============================================ -->
@@ -410,7 +427,10 @@
                     <a href="#" onclick="showRegionalPage('mindanao'); return false;">CDO</a>
                     <a href="#" onclick="showRegionalPage('jamaica'); return false;">Jamaica</a>
                 </div>
-            </nav>  
+            </nav>
+        </div>
+        
+    
 
         <!-- ============================================
              NEW: EVENT RECAP BANNER
@@ -445,7 +465,6 @@
                 </div>
             </div>
         </div>
-            </div>
 
         <!-- ============================================
              NEW: PHOTO GALLERY SECTION
